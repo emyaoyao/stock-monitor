@@ -119,7 +119,10 @@ def scan(codes: list[str], names: dict[str, str], quiet: bool = False) -> list[d
             r = ME.evaluate_stock(code, models, ME.TFS)
             r["name"] = names.get(code, r.get("name", ""))
             results.append(r)
-            summaries.append(ME.summarize(r))
+            summ = ME.summarize(r)
+            # summarize 内部会另取行情源名称（常为 None），用 watchlist 名称兜底，保证落盘/APP 显示正确
+            summ["name"] = names.get(code, summ.get("name") or "")
+            summaries.append(summ)
             if not quiet:
                 print(f"[scan] {code} {r.get('name','')} 价 {r.get('price')}")
         except Exception as e:
