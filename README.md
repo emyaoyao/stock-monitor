@@ -4,6 +4,28 @@
 
 ---
 
+## ⚠️ 激活前的最后一步
+
+代码和 Secrets 都已就位，但**工作流文件目前放在 `deploy/monitor.yml`**，还没进 `.github/workflows/`，所以定时任务尚未生效。
+
+原因：写入 `.github/workflows/` 需要 token 带 `workflow` 权限，这是 GitHub 的安全门禁，API 侧无法绕过（会返回 404）。
+
+**任选一条激活**：
+
+**A. 网页里把文件挪过去（一步，不用改权限）**
+
+1. 打开 <https://github.com/emyaoyao/stock-monitor/edit/main/deploy/monitor.yml>
+2. 把顶部文件名框改成：`../.github/workflows/monitor.yml`
+3. 点 **Commit changes**
+
+**B. 给 token 加 `workflow` 权限（以后改工作流更方便）**
+
+GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic) → 选中那个 token → 勾上 **workflow** → Update token。token 值不变，本地凭据继续可用。
+
+激活后可自查：Actions 页出现「买点监控」工作流即成功。
+
+---
+
 ## 手机怎么用
 
 ### 加 / 删 / 看（GitHub 手机端或浏览器）
