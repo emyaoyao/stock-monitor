@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+_gh_setup.py
+.git-credentials
+outputs/monitor_report.html
+outputs/monitor_result.json

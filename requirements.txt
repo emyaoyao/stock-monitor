@@ -1,0 +1,2 @@
+# 零第三方依赖：监控运行时只用 Python 标准库（json/os/ssl/urllib/re 等）。
+# GitHub Actions 的 setup-python 后无需 pip install。
