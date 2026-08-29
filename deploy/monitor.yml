@@ -71,7 +71,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add outputs/watchlist.json outputs/last_signals.json
+          git add outputs/watchlist.json outputs/last_signals.json outputs/monitor_result.json
           if git diff --cached --quiet; then
             # 无实质变化：若距上次提交已超过 7 天，写一次心跳，防止 GitHub 在 60 天无活动后停用定时任务
             last=$(git log -1 --format=%ct 2>/dev/null || echo 0)
