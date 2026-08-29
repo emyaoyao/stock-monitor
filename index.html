@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0e17">
+  <title>买点监控</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/png" href="./icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./icons/icon-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="买点监控">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="topbar">
+    <img class="logo" src="./icons/icon-192.png" alt="">
+    <h1>价格行为 · <span class="accent">买点监控</span></h1>
+    <div class="spacer"></div>
+    <div class="meta" id="meta">加载中…</div>
+    <button class="btn icon" id="refresh" title="刷新">⟳</button>
+  </div>
+
+  <div class="wrap">
+    <div class="banner" id="banner"></div>
+
+    <div class="section-title">监控清单</div>
+    <div class="card add">
+      <input id="addCode" inputmode="numeric" maxlength="6" placeholder="代码 如 600519">
+      <input id="addName" class="name" placeholder="名称（可选）">
+      <button class="btn primary" id="addBtn">＋ 添加</button>
+      <div class="hint" id="addHint"></div>
+    </div>
+    <div id="watchlist"></div>
+
+    <div class="section-title">买点信号</div>
+    <div id="signals"></div>
+
+    <details class="card settings">
+      <summary>高级设置（应用内增删需填 GitHub Token）</summary>
+      <div class="body">
+        <input type="password" id="tokenInput" placeholder="粘贴 fine-grained PAT（仅授予 stock-monitor 的 Contents + Actions 写权限）">
+        <div class="note">
+          Token 仅保存在本机浏览器（localStorage），除 GitHub 外不会发往任何服务器。<br>
+          不填也能查看；填了可在 APP 内直接增删并触发扫描。不填时「添加/移除」会跳到 GitHub Actions 网页操作。
+        </div>
+        <div class="actions">
+          <button class="btn primary" id="saveToken">保存</button>
+          <button class="btn ghost" id="clearToken">清除</button>
+        </div>
+      </div>
+    </details>
+
+    <div class="foot">
+      数据由 GitHub Actions 定时生成 · <a id="repoLink" href="https://github.com/emyaoyao/stock-monitor" target="_blank" rel="noopener">仓库</a><br>
+      红涨绿跌 · 仅作技术参考，非投资建议
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="./app.js"></script>
+</body>
+</html>
