@@ -115,11 +115,13 @@ def scan(codes: list[str], names: dict[str, str], quiet: bool = False) -> list[d
     models = ME.load_models(MODELS)
     results, summaries = [], []
     for code in codes:
+        print(f"[dbg] code={code!r} names_keys={list(names.keys())} names_get={names.get(code)!r}", flush=True)
         try:
             r = ME.evaluate_stock(code, models, ME.TFS)
             r["name"] = names.get(code, r.get("name", ""))
             results.append(r)
             summ = ME.summarize(r)
+            print(f"[dbg] summ_name_before={summ.get('name')!r} will_set={names.get(code, summ.get('name') or '')!r}", flush=True)
             # summarize 内部会另取行情源名称（常为 None），用 watchlist 名称兜底，保证落盘/APP 显示正确
             summ["name"] = names.get(code, summ.get("name") or "")
             summaries.append(summ)
