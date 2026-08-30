@@ -39,36 +39,50 @@
     <div id="signals"></div>
 
     <details class="card settings">
-      <summary>高级设置（应用内增删需填 GitHub Token）</summary>
+      <summary>多设备共享（填一次，各设备共用同一份清单）</summary>
       <div class="body">
-        <div class="note" style="margin-bottom:10px">
-          <b>① 多设备共享（推荐）：</b>填 Worker 地址 + 自设口令，每台设备填同样两个值即可共用同一份清单，
-          换手机不用再配 GitHub Token。还没部署 Worker 时，可先用下面的方式 ②。
+        <div class="note" style="margin-bottom:8px">
+          <b>① GitHub 共享令牌（推荐）：</b>每台设备填<b>同一个</b>令牌，即共用同一份清单——
+          手机加的票，电脑上立刻能看到，反之亦然。<br>
+          令牌只存在本机浏览器，除 GitHub 外<b>不会发往任何服务器</b>。
         </div>
-        <input id="proxyInput" placeholder="Worker 地址，如 https://xxx.workers.dev/api">
+        <input type="password" id="tokenInput" placeholder="粘贴 GitHub 令牌（只对 stock-monitor 仓库授权）">
+        <div class="actions">
+          <button class="btn primary" id="saveToken">保存</button>
+          <button class="btn ghost" id="clearToken">清除</button>
+          <button class="btn ghost" id="genLink">生成同步链接</button>
+        </div>
+        <div id="linkBox" hidden style="margin-top:10px">
+          <input id="linkInput" readonly>
+          <div class="actions" style="margin-top:6px">
+            <button class="btn primary" id="copyLink">复制链接</button>
+            <button class="btn ghost" id="hideLink">收起</button>
+          </div>
+          <div class="note" style="margin-top:6px">
+            在另一台设备打开这个链接即自动完成配置（链接内含令牌，<b>请不要发到群里或公开场合</b>）。
+          </div>
+        </div>
+        <div class="note" style="margin-top:10px">
+          <b>如何创建令牌（约 2 分钟，只需这一次）：</b><br>
+          <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">① 点这里打开创建页</a><br>
+          ② Repository access 选 <b>Only select repositories</b>，只勾 <b>stock-monitor</b><br>
+          ③ Permissions → Repository permissions：<b>Contents</b> 设为 Read and write、<b>Actions</b> 设为 Read and write<br>
+          ④ Generate token → 复制 → 粘贴到上面输入框保存
+        </div>
+        <hr style="margin:16px 0;border:0;border-top:1px solid rgba(255,255,255,.12)">
+        <div class="note" style="margin-bottom:8px">
+          <b>② 云函数代理（可选）：</b>部署了云函数后填地址和口令，手机端就<b>不必保存令牌</b>，只带口令即可。
+          还没部署就留空，用上面的方式 ① 就够。
+        </div>
+        <input id="proxyInput" placeholder="云函数地址，如 https://xxx.fcapp.run">
         <input type="password" id="keyInput" placeholder="自设口令（如 milu2026）">
         <div class="actions">
           <button class="btn primary" id="saveProxy">保存代理</button>
           <button class="btn ghost" id="clearProxy">清除</button>
         </div>
-        <hr style="margin:16px 0;border:0;border-top:1px solid rgba(255,255,255,.12)">
-        <div class="note" style="margin-bottom:8px">
-          <b>② 仅本机使用：</b>填 GitHub Token（只对这台设备生效，换设备要重新填）。
-        </div>
-        <input type="password" id="tokenInput" placeholder="粘贴 fine-grained PAT（仅授予 stock-monitor 的 Contents + Actions 写权限）">
-        <div class="note">
-          Token 仅保存在本机浏览器（localStorage），除 GitHub 外不会发往任何服务器。<br>
-          不填也能查看；填了可在 APP 内直接增删并触发扫描。不填时「添加/移除」会跳到 GitHub Actions 网页操作。
-          <br><br>
-          <b>如何创建（约 2 分钟，只需这一次）：</b><br>
-          <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">① 点这里打开 Token 创建页</a><br>
-          ② Repository access 选 <b>Only select repositories</b>，只勾 <b>stock-monitor</b><br>
-          ③ Permissions → Repository permissions：<b>Contents</b> 设为 Read and write、<b>Actions</b> 设为 Read and write<br>
-          ④ 点 Generate token，复制后粘贴到上面输入框保存
-        </div>
-        <div class="actions">
-          <button class="btn primary" id="saveToken">保存</button>
-          <button class="btn ghost" id="clearToken">清除</button>
+        <div class="note" style="margin-top:8px">
+          不配置也能查看清单和信号；配置后可在 APP 内直接增删并触发云端扫描。
+          都不填时「添加/移除」会跳到 GitHub Actions 网页操作。
         </div>
       </div>
     </details>
