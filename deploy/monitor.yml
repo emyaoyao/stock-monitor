@@ -84,6 +84,20 @@ jobs:
           else
             git commit -m "chore(monitor): update watchlist/state"
           fi
-          # 手动触发与定时任务可能几乎同时落地，推之前先并轨，避免 non-fast-forward
-          git pull --rebase --autostash origin main || true
-          git push
+          # 推之前先并轨。注意：concurrency 只能让多个 run 排队，关不掉
+          # 「pull 完成 → push 落地」之间的竞态窗口——这期间别人（另一个 run、或用
+          # Contents API 直接写文件的操作）一旦抢先提交，服务端 ref 就变了，push 会被拒：
+          #   ! [remote rejected] main (cannot lock ref ... is at X but expected Y)
+          # 所以必须重试：每次重新 fetch+rebase 拿最新基准再推。
+          for i in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase --autostash origin/main || git rebase --abort
+            if git push origin HEAD:main; then
+              echo "推送成功（第 $i 次尝试）"
+              exit 0
+            fi
+            echo "第 $i 次推送冲突，等待后重试"
+            sleep $((i * 5))
+          done
+          echo "::error::推送失败：重试 5 次仍冲突，本次扫描结果未落盘"
+          exit 1
