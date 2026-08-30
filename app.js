@@ -5,6 +5,9 @@ const API = "https://api.github.com";
 const REFRESH_MS = 5 * 60 * 1000;
 
 let token = localStorage.getItem("bm_token") || "";
+// 多设备共享：Worker 代理地址 + 自设口令。填了优先走代理，多台设备填同样两个值即可共用同一清单
+let proxy = localStorage.getItem("bm_proxy") || "";
+let appKey = localStorage.getItem("bm_key") || "";
 const $ = (s) => document.querySelector(s);
 
 function toast(msg) {
@@ -127,9 +130,11 @@ function render(wl, res) {
       .join("");
   }
 
-  $("#addHint").textContent = token
-    ? "已填 Token：添加后自动触发云端扫描"
-    : "未填 Token：点击添加会跳到 GitHub Actions 网页操作";
+  $("#addHint").textContent = proxy
+    ? "共享模式：添加直接在 APP 内生效，多设备共用同一清单"
+    : token
+      ? "已填 Token：添加后自动触发云端扫描（仅本机有效）"
+      : "未配置：点击添加会跳到 GitHub Actions 网页操作";
 }
 
 // ---------- GitHub API（可选，应用内增删） ----------
@@ -172,9 +177,30 @@ function openActions() {
   window.open(`https://github.com/${REPO}/actions`, "_blank", "noopener");
   toast("已打开 GitHub Actions，填代码后 Run workflow");
 }
+// 多设备共享模式：走 Worker 代理（服务端持有 GitHub Token，手机端只带口令）
+async function proxyCall(payload) {
+  const r = await fetch(proxy, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "X-App-Key": appKey },
+    body: JSON.stringify(payload),
+  });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok || j.ok === false) throw new Error(j.msg || ("请求失败 " + r.status));
+  return j;
+}
+
 async function addStock(code, name) {
   code = (code || "").trim();
   if (!/^\d{6}$/.test(code)) { toast("代码需为 6 位数字"); return; }
+  if (proxy) {
+    try {
+      const j = await proxyCall({ action: "add", code, name: (name || "").trim() });
+      toast(j.msg || "已添加，云端扫描约 2 分钟后出信号");
+      setTimeout(loadAll, 1500);
+      setTimeout(loadAll, 120000);
+    } catch (e) { toast(e.message || "添加失败"); }
+    return;
+  }
   if (!token) { openActions(); return; }
   try {
     const { sha, list } = await getWatchlist();
@@ -191,6 +217,15 @@ async function addStock(code, name) {
 }
 async function removeStock(code) {
   code = (code || "").trim();
+  if (proxy) {
+    try {
+      const j = await proxyCall({ action: "remove", code });
+      toast(j.msg || "已移除，云端更新中…");
+      setTimeout(loadAll, 1500);
+      setTimeout(loadAll, 120000);
+    } catch (e) { toast(e.message || "移除失败"); }
+    return;
+  }
   if (!token) { openActions(); return; }
   try {
     const { sha, list } = await getWatchlist();
@@ -220,7 +255,23 @@ $("#clearToken").addEventListener("click", () => {
   token = ""; localStorage.removeItem("bm_token"); $("#tokenInput").value = "";
   toast("已清除 Token"); loadAll();
 });
+$("#saveProxy").addEventListener("click", () => {
+  proxy = ($("#proxyInput").value || "").trim().replace(/\/+$/, "");
+  appKey = ($("#keyInput").value || "").trim();
+  if (proxy) localStorage.setItem("bm_proxy", proxy); else localStorage.removeItem("bm_proxy");
+  if (appKey) localStorage.setItem("bm_key", appKey); else localStorage.removeItem("bm_key");
+  toast(proxy ? "共享代理已保存（多设备填同样两个值）" : "已清除代理配置");
+  loadAll();
+});
+$("#clearProxy").addEventListener("click", () => {
+  proxy = ""; appKey = "";
+  localStorage.removeItem("bm_proxy"); localStorage.removeItem("bm_key");
+  $("#proxyInput").value = ""; $("#keyInput").value = "";
+  toast("已清除共享代理"); loadAll();
+});
 if (token) $("#tokenInput").value = token;
+if (proxy) $("#proxyInput").value = proxy;
+if (appKey) $("#keyInput").value = appKey;
 
 let deferred = null;
 window.addEventListener("beforeinstallprompt", (e) => {
