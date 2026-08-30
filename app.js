@@ -5,10 +5,22 @@ const API = "https://api.github.com";
 const REFRESH_MS = 5 * 60 * 1000;
 
 let token = localStorage.getItem("bm_token") || "";
-// 多设备共享：Worker 代理地址 + 自设口令。填了优先走代理，多台设备填同样两个值即可共用同一清单
+// 多设备共享可选走云函数代理：地址 + 自设口令（不填就用上面的令牌直连 GitHub）
 let proxy = localStorage.getItem("bm_proxy") || "";
 let appKey = localStorage.getItem("bm_key") || "";
 const $ = (s) => document.querySelector(s);
+
+// 同步链接支持：打开 #t=<令牌> 的链接即自动完成配置，随后把令牌从地址栏抹掉，
+// 避免它留在浏览器历史或被误复制出去。
+(function restoreFromHash() {
+  const m = location.hash.match(/[#&]t=([^&]+)/);
+  if (!m) return;
+  try {
+    const t = decodeURIComponent(m[1]);
+    if (t) { token = t; localStorage.setItem("bm_token", token); }
+  } catch { /* 忽略畸形链接 */ }
+  history.replaceState(null, "", location.pathname + location.search);
+})();
 
 function toast(msg) {
   const t = $("#toast");
@@ -60,7 +72,13 @@ async function loadJSON(path) {
 }
 
 async function loadAll() {
-  const wl = await loadJSON("./outputs/watchlist.json");
+  // 有令牌时优先走 GitHub API 读清单：别的设备改了立刻能看到，
+  // 不必等 Pages 上的静态文件被 Actions 重新生成。失败则回退到静态文件。
+  let wl = null;
+  if (token && !proxy) {
+    try { wl = (await getWatchlist()).list; } catch { wl = null; }
+  }
+  if (wl === null) wl = await loadJSON("./outputs/watchlist.json");
   const res = await loadJSON("./outputs/monitor_result.json");
   render(wl, res);
 }
@@ -131,9 +149,9 @@ function render(wl, res) {
   }
 
   $("#addHint").textContent = proxy
-    ? "共享模式：添加直接在 APP 内生效，多设备共用同一清单"
+    ? "代理模式：添加直接在 APP 内生效，多设备共用同一清单"
     : token
-      ? "已填 Token：添加后自动触发云端扫描（仅本机有效）"
+      ? "共享模式：添加即写入云端清单，所有设备同步（约 2 分钟后出信号）"
       : "未配置：点击添加会跳到 GitHub Actions 网页操作";
 }
 
@@ -253,8 +271,30 @@ $("#saveToken").addEventListener("click", () => {
 });
 $("#clearToken").addEventListener("click", () => {
   token = ""; localStorage.removeItem("bm_token"); $("#tokenInput").value = "";
-  toast("已清除 Token"); loadAll();
+  $("#linkBox").hidden = true;
+  toast("已清除令牌"); loadAll();
 });
+// 生成同步链接：把令牌编进 URL hash，另一台设备打开即自动配置
+$("#genLink").addEventListener("click", () => {
+  const t = ($("#tokenInput").value || "").trim() || token;
+  if (!t) { toast("请先粘贴并保存令牌"); return; }
+  token = t; localStorage.setItem("bm_token", token);
+  $("#linkInput").value = location.href.split("#")[0] + "#t=" + encodeURIComponent(t);
+  $("#linkBox").hidden = false;
+  loadAll();
+});
+$("#copyLink").addEventListener("click", async () => {
+  const inp = $("#linkInput");
+  try {
+    await navigator.clipboard.writeText(inp.value);
+    toast("已复制，在另一台设备打开即可");
+  } catch {
+    inp.removeAttribute("readonly"); inp.select();
+    document.execCommand("copy"); inp.setAttribute("readonly", "");
+    toast("已复制");
+  }
+});
+$("#hideLink").addEventListener("click", () => { $("#linkBox").hidden = true; });
 $("#saveProxy").addEventListener("click", () => {
   proxy = ($("#proxyInput").value || "").trim().replace(/\/+$/, "");
   appKey = ($("#keyInput").value || "").trim();
