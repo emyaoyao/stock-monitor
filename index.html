@@ -45,6 +45,12 @@
         <div class="note">
           Token 仅保存在本机浏览器（localStorage），除 GitHub 外不会发往任何服务器。<br>
           不填也能查看；填了可在 APP 内直接增删并触发扫描。不填时「添加/移除」会跳到 GitHub Actions 网页操作。
+          <br><br>
+          <b>如何创建（约 2 分钟，只需这一次）：</b><br>
+          <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">① 点这里打开 Token 创建页</a><br>
+          ② Repository access 选 <b>Only select repositories</b>，只勾 <b>stock-monitor</b><br>
+          ③ Permissions → Repository permissions：<b>Contents</b> 设为 Read and write、<b>Actions</b> 设为 Read and write<br>
+          ④ 点 Generate token，复制后粘贴到上面输入框保存
         </div>
         <div class="actions">
           <button class="btn primary" id="saveToken">保存</button>
