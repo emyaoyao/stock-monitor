@@ -164,9 +164,30 @@ function ghHeaders() {
     "Content-Type": "application/json",
   };
 }
+// 把 GitHub 的错误响应翻译成人话。403 有好几种成因（令牌没写权限、分支保护、
+// 仓库不在授权范围），只抛一个状态码没法定位，所以连同响应体一起解析。
+async function ghErr(r, what) {
+  let msg = "";
+  try {
+    const j = await r.json();
+    msg = j.message || "";
+  } catch { /* 响应体不是 JSON，忽略 */ }
+  if (r.status === 401) return new Error(`令牌无效或已过期（401）。请重新生成令牌${msg ? "：" + msg : ""}`);
+  if (r.status === 403) {
+    if (msg.includes("Resource not accessible by personal access token"))
+      return new Error("令牌没有写权限（403）。请把令牌的 Contents 设为 Read and write，并确认仓库勾的是 stock-monitor");
+    if (msg.includes("rate limit")) return new Error("触发 GitHub 限流（403），请稍后再试");
+    if (msg.includes("protected") || msg.includes("branch"))
+      return new Error(`分支保护拦截（403）：${msg}。请在仓库 Settings → Branches 放开 main 的写入`);
+    return new Error(`${what}被拒（403）${msg ? "：" + msg : ""}`);
+  }
+  if (r.status === 404) return new Error(`${what}失败（404）：仓库或文件不存在，检查令牌授权的仓库是否为 ${REPO}`);
+  if (r.status === 409) return new Error(`${what}冲突（409）：清单刚被别的设备改过，请刷新后重试`);
+  return new Error(`${what}失败 ${r.status}${msg ? "：" + msg : ""}`);
+}
 async function getWatchlist() {
   const r = await fetch(`${API}/repos/${REPO}/contents/outputs/watchlist.json`, { headers: ghHeaders() });
-  if (!r.ok) throw new Error("读取清单失败 " + r.status);
+  if (!r.ok) throw await ghErr(r, "读取清单");
   const j = await r.json();
   return { sha: j.sha, list: JSON.parse(b64dec(j.content)) };
 }
@@ -181,7 +202,7 @@ async function putWatchlist(sha, list) {
     headers: ghHeaders(),
     body: JSON.stringify(body),
   });
-  if (!r.ok) throw new Error("写入清单失败 " + r.status);
+  if (!r.ok) throw await ghErr(r, "写入清单");
 }
 async function dispatch(payload) {
   const r = await fetch(`${API}/repos/${REPO}/actions/workflows/monitor.yml/dispatches`, {
@@ -189,7 +210,66 @@ async function dispatch(payload) {
     headers: ghHeaders(),
     body: JSON.stringify({ ref: "main", inputs: payload }),
   });
-  if (!r.ok && r.status !== 204) throw new Error("触发扫描失败 " + r.status);
+  if (!r.ok && r.status !== 204) throw await ghErr(r, "触发扫描");
+}
+
+// ---------- 令牌自检 ----------
+// GET /repos/{repo} 会带回 permissions.push / pull，这是判断令牌有没有写权限最干净的
+// 办法——零副作用，不用真的去写文件。配合分支保护状态，能覆盖 403 的绝大多数成因。
+async function diagnose() {
+  const out = [];
+  const add = (ok, text) => out.push({ ok, text });
+  if (!token) { add(false, "还没有填令牌"); return out; }
+
+  add(true, "令牌格式：" + (token.startsWith("github_pat_")
+    ? "fine-grained（细粒度，推荐）"
+    : token.startsWith("ghp_") ? "classic（经典）"
+    : "未识别前缀，请确认复制完整"));
+
+  let r = await fetch(`${API}/user`, { headers: ghHeaders() });
+  if (!r.ok) {
+    add(false, `身份验证失败 ${r.status}：令牌无效或已过期，请重新生成`);
+    return out;
+  }
+  const me = await r.json();
+  add(true, `身份：${me.login}`);
+  const scopes = r.headers.get("X-OAuth-Scopes");
+  add(true, scopes ? `授权范围：${scopes}` : "授权范围：细粒度令牌（按仓库授权，无 scope 概念）");
+
+  r = await fetch(`${API}/repos/${REPO}`, { headers: ghHeaders() });
+  if (!r.ok) {
+    add(false, `看不到仓库 ${REPO}（${r.status}）：令牌授权的仓库不对，请确认勾的是 stock-monitor`);
+    return out;
+  }
+  const repo = await r.json();
+  const perm = repo.permissions || {};
+  add(perm.pull === true, `读权限（pull）：${perm.pull ? "有" : "无"}`);
+  add(perm.push === true, `写权限（push）：${perm.push ? "有" : "无 ← 这就是 403 的原因"}`);
+  if (!perm.push) {
+    add(false, "修复：进令牌设置页把 Contents 改成 Read and write，仓库选 stock-monitor");
+    return out;
+  }
+
+  r = await fetch(`${API}/repos/${REPO}/branches/main`, { headers: ghHeaders() });
+  if (r.ok) {
+    const br = await r.json();
+    if (br.protected) {
+      add(false, "main 分支开启了保护规则 —— 即使令牌有写权限，API 写文件也会被 403 拦下");
+      add(false, "修复：仓库 Settings → Branches → 编辑 main 规则，取消对 push 的限制（或把令牌加入例外名单）");
+    } else {
+      add(true, "分支保护：未开启，可以正常写入");
+    }
+  }
+
+  r = await fetch(`${API}/repos/${REPO}/contents/outputs/watchlist.json`, { headers: ghHeaders() });
+  if (r.ok) {
+    const j = await r.json();
+    const list = JSON.parse(b64dec(j.content));
+    add(true, `清单读取正常，当前 ${list.length} 条`);
+  } else {
+    add(false, "清单读取失败 " + r.status);
+  }
+  return out;
 }
 function openActions() {
   window.open(`https://github.com/${REPO}/actions`, "_blank", "noopener");
@@ -271,8 +351,27 @@ $("#saveToken").addEventListener("click", () => {
 });
 $("#clearToken").addEventListener("click", () => {
   token = ""; localStorage.removeItem("bm_token"); $("#tokenInput").value = "";
-  $("#linkBox").hidden = true;
+  $("#linkBox").hidden = true; $("#diagBox").hidden = true;
   toast("已清除令牌"); loadAll();
+});
+function renderDiag(items) {
+  const box = $("#diagBox");
+  box.innerHTML = items.map((i) =>
+    `<div style="margin:4px 0;color:${i.ok ? "var(--ok,#3fb950)" : "var(--bad,#f85149)"}">` +
+    `${i.ok ? "✓" : "✗"} ${esc(i.text)}</div>`).join("");
+  box.hidden = false;
+}
+$("#checkToken").addEventListener("click", async () => {
+  const t = ($("#tokenInput").value || "").trim();
+  if (t) { token = t; localStorage.setItem("bm_token", token); }
+  if (!token) { toast("请先粘贴令牌"); return; }
+  renderDiag([{ ok: true, text: "正在自检…" }]);
+  try {
+    renderDiag(await diagnose());
+  } catch (e) {
+    renderDiag([{ ok: false, text: "自检失败：" + (e.message || e) }]);
+  }
+  loadAll();
 });
 // 生成同步链接：把令牌编进 URL hash，另一台设备打开即自动配置
 $("#genLink").addEventListener("click", () => {
