@@ -1,5 +1,5 @@
 // 买点监控 PWA · Service Worker
-const CACHE = "bm-pwa-v1";
+const CACHE = "bm-pwa-v2";   // 版本号变化会触发 Service Worker 更新并重建缓存
 const SHELL = [
   "./", "./index.html", "./app.js", "./styles.css", "./manifest.webmanifest",
   "./icons/icon-192.png", "./icons/icon-512.png", "./icons/icon-180.png"
@@ -23,14 +23,12 @@ self.addEventListener("fetch", (e) => {
     e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
     return;
   }
-  // 外壳：缓存优先，后台更新
+  // 外壳：网络优先，失败回退缓存（在线总能拿到最新版本，离线仍可用）
   e.respondWith(
-    caches.match(e.request).then((r) =>
-      r || fetch(e.request).then((res) => {
-        const cp = res.clone();
-        caches.open(CACHE).then((c) => c.put(e.request, cp));
-        return res;
-      }).catch(() => caches.match("./"))
-    )
+    fetch(e.request).then((res) => {
+      const cp = res.clone();
+      caches.open(CACHE).then((c) => c.put(e.request, cp));
+      return res;
+    }).catch(() => caches.match(e.request).then((r) => r || caches.match("./")))
   );
 });
