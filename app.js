@@ -287,9 +287,58 @@ async function proxyCall(payload) {
   return j;
 }
 
+// ---------- 股票名称自动识别 ----------
+// 腾讯快照接口返回的是 GBK 编码（不是 UTF-8），直接当文本读会拿到乱码，
+// 必须走 arrayBuffer + TextDecoder('gbk')。该接口带 CORS:*，浏览器可直连。
+function txCode(code) {
+  if (/^6/.test(code)) return "sh" + code;      // 沪市（含 688 科创板）
+  if (/^(0|3)/.test(code)) return "sz" + code;  // 深市（含 300 创业板）
+  if (/^(4|8)/.test(code)) return "bj" + code;  // 北交所
+  return "sh" + code;
+}
+async function lookupName(code) {
+  const r = await fetch(`https://qt.gtimg.cn/q=${txCode(code)}`);
+  if (!r.ok) throw new Error("查询失败 " + r.status);
+  const txt = new TextDecoder("gbk").decode(await r.arrayBuffer());
+  // 返回形如：v_sh600519="1~贵州茅台~600519~1297.40~...";
+  // 先切出引号内的整体再按 ~ 分段，第 [1] 段才是名称。
+  // 注意：不能用 /="...~([^~]+)~/ 这类正则——[^"]* 贪婪匹配会回溯到末尾字段，取到涨跌幅之类的数字。
+  const seg = txt.split('="')[1];
+  if (!seg) return "";
+  const parts = seg.split('"')[0].split("~");
+  return parts.length > 1 ? parts[1].trim() : "";
+}
+// 输入满 6 位就自动补名称，省得手打
+let _lookupSeq = 0;
+async function autoFillName() {
+  const code = ($("#addCode").value || "").trim();
+  const nameEl = $("#addName"), hintEl = $("#lookupHint");
+  if (!/^\d{6}$/.test(code)) { hintEl.hidden = true; return; }
+  if ((nameEl.value || "").trim()) { hintEl.hidden = true; return; } // 用户已手填就不抢
+  const seq = ++_lookupSeq;                       // 防止快速输入时旧请求覆盖新结果
+  hintEl.textContent = "识别中…"; hintEl.hidden = false;
+  try {
+    const name = await lookupName(code);
+    if (seq !== _lookupSeq) return;
+    if (name) {
+      nameEl.value = name;
+      hintEl.textContent = "✓ 已识别：" + name;
+      setTimeout(() => { hintEl.hidden = true; }, 2500);
+    } else {
+      hintEl.textContent = "未识别到该代码，可手动填名称";
+    }
+  } catch {
+    if (seq === _lookupSeq) { hintEl.textContent = "名称识别失败（不影响添加）"; }
+  }
+}
+
 async function addStock(code, name) {
   code = (code || "").trim();
   if (!/^\d{6}$/.test(code)) { toast("代码需为 6 位数字"); return; }
+  // 名称留空时先补一次，保证写进清单的每条都有名字
+  if (!(name || "").trim()) {
+    try { name = await lookupName(code); } catch { name = ""; }
+  }
   if (proxy) {
     try {
       const j = await proxyCall({ action: "add", code, name: (name || "").trim() });
@@ -342,7 +391,19 @@ async function removeStock(code) {
 // ---------- 事件 ----------
 $("#refresh").addEventListener("click", loadAll);
 $("#addBtn").addEventListener("click", () => addStock($("#addCode").value, $("#addName").value));
-$("#addCode").addEventListener("keydown", (e) => { if (e.key === "Enter") $("#addName").focus(); });
+// 输满 6 位自动识别名称（防抖 400ms，避免边打字边发请求）
+let _fillT;
+$("#addCode").addEventListener("input", () => {
+  clearTimeout(_fillT);
+  _fillT = setTimeout(autoFillName, 400);
+});
+$("#addCode").addEventListener("blur", autoFillName);
+$("#addCode").addEventListener("keydown", async (e) => {
+  if (e.key !== "Enter") return;
+  if (!/^\d{6}$/.test(($("#addCode").value || "").trim())) { $("#addName").focus(); return; }
+  if (!($("#addName").value || "").trim()) await autoFillName();  // 回车时补一次再跳焦点
+  $("#addName").focus();
+});
 $("#addName").addEventListener("keydown", (e) => { if (e.key === "Enter") $("#addBtn").click(); });
 $("#saveToken").addEventListener("click", () => {
   token = $("#tokenInput").value.trim();
