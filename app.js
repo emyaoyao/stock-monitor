@@ -182,8 +182,9 @@ async function addStock(code, name) {
     list.push({ code, name: (name || "").trim() });
     await putWatchlist(sha, list);
     await dispatch({ mode: "run", add_code: code, add_name: (name || "").trim() });
-    toast("已添加，云端扫描中…");
-    setTimeout(loadAll, 1500);
+    toast("已添加，云端扫描约 2 分钟后出信号");
+    setTimeout(loadAll, 1500);    // 先刷出清单里的新票
+    setTimeout(loadAll, 120000);  // 云端 Actions 跑完约 2 分钟，之后自动刷出信号
   } catch (e) {
     toast(e.message || "添加失败");
   }
@@ -199,6 +200,7 @@ async function removeStock(code) {
     await dispatch({ mode: "run", remove_code: code });
     toast("已移除，云端更新中…");
     setTimeout(loadAll, 1500);
+    setTimeout(loadAll, 120000);
   } catch (e) {
     toast(e.message || "移除失败");
   }
