@@ -49,9 +49,11 @@
         <input type="password" id="tokenInput" placeholder="粘贴 GitHub 令牌（只对 stock-monitor 仓库授权）">
         <div class="actions">
           <button class="btn primary" id="saveToken">保存</button>
+          <button class="btn ghost" id="checkToken">自检</button>
           <button class="btn ghost" id="clearToken">清除</button>
           <button class="btn ghost" id="genLink">生成同步链接</button>
         </div>
+        <div id="diagBox" hidden style="margin-top:10px"></div>
         <div id="linkBox" hidden style="margin-top:10px">
           <input id="linkInput" readonly>
           <div class="actions" style="margin-top:6px">
