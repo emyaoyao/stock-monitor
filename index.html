@@ -41,6 +41,20 @@
     <details class="card settings">
       <summary>高级设置（应用内增删需填 GitHub Token）</summary>
       <div class="body">
+        <div class="note" style="margin-bottom:10px">
+          <b>① 多设备共享（推荐）：</b>填 Worker 地址 + 自设口令，每台设备填同样两个值即可共用同一份清单，
+          换手机不用再配 GitHub Token。还没部署 Worker 时，可先用下面的方式 ②。
+        </div>
+        <input id="proxyInput" placeholder="Worker 地址，如 https://xxx.workers.dev/api">
+        <input type="password" id="keyInput" placeholder="自设口令（如 milu2026）">
+        <div class="actions">
+          <button class="btn primary" id="saveProxy">保存代理</button>
+          <button class="btn ghost" id="clearProxy">清除</button>
+        </div>
+        <hr style="margin:16px 0;border:0;border-top:1px solid rgba(255,255,255,.12)">
+        <div class="note" style="margin-bottom:8px">
+          <b>② 仅本机使用：</b>填 GitHub Token（只对这台设备生效，换设备要重新填）。
+        </div>
         <input type="password" id="tokenInput" placeholder="粘贴 fine-grained PAT（仅授予 stock-monitor 的 Contents + Actions 写权限）">
         <div class="note">
           Token 仅保存在本机浏览器（localStorage），除 GitHub 外不会发往任何服务器。<br>
