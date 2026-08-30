@@ -10,6 +10,8 @@
   --up: #ff4d4f;     /* 涨：红（中国习惯） */
   --down: #16c784;   /* 跌：绿 */
   --amber: #fbbf24;
+  --ok: #3fb950;     /* 自检通过，与涨跌幅语义无关，另设一组 */
+  --bad: #f85149;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
 }
