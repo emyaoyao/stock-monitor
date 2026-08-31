@@ -1,11 +1,5 @@
 [
- "600011|m_double_bottom_long|日线",
- "600011|m_range_buy_low|日线",
- "600011|m_tight_channel_long|15分",
- "600011|m_tight_channel_long|30分",
- "600011|m_tight_channel_long|60分",
- "600519|m_mtr_long|15分",
- "600519|m_rally_short|日线",
- "600519|m_tight_channel_long|15分",
- "600519|m_two_leg_long|15分"
+ "600011|m_rally_short|15分",
+ "600011|m_rally_short|日线",
+ "600410|m_two_leg_long|60分"
 ]
