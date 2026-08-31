@@ -2,7 +2,7 @@
 // 数据走同域 ./outputs/*.json（无 token 也能看）；增删可选填 GitHub Token 走 API。
 const REPO = "emyaoyao/stock-monitor";
 const API = "https://api.github.com";
-const REFRESH_MS = 5 * 60 * 1000;
+const REFRESH_MS = 60 * 1000;   // 数据自动刷新间隔（60 秒）：新加股票约 2 分钟出云端信号后即自动出现
 
 let token = localStorage.getItem("bm_token") || "";
 // 多设备共享可选走云函数代理：地址 + 自设口令（不填就用上面的令牌直连 GitHub）
@@ -501,7 +501,23 @@ window.addEventListener("beforeinstallprompt", (e) => {
 });
 
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+  // 注册并主动检查更新：应对旧 SW 卡住、一直喂缓存旧数据（如旧 monitor_result.json 仍含已删股票）的情况
+  window.addEventListener("load", async () => {
+    try {
+      const reg = await navigator.serviceWorker.register("./sw.js");
+      setInterval(() => { try { reg.update(); } catch (e) {} }, 60000);   // 每分钟探测一次新版本
+      reg.addEventListener("updatefound", () => {
+        const nw = reg.installing;
+        if (!nw) return;
+        nw.addEventListener("statechange", () => {
+          // 已有旧 SW 在控，新版本装好就立即重载应用，用户无需手动刷新
+          if (nw.state === "installed" && navigator.serviceWorker.controller) location.reload();
+        });
+      });
+    } catch (e) { /* SW 不可用不影响基础功能 */ }
+  });
+  // 新版 SW 接管时自动重载，确保马上拿到新逻辑/新数据策略
+  navigator.serviceWorker.addEventListener("controllerchange", () => location.reload());
 }
 
 loadAll();
