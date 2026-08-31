@@ -7,17 +7,28 @@ contentType 1=HTML，2=纯文本，3=Markdown。微信公众号正文不支持 M
 
 from __future__ import annotations
 
+import html
 import json
 import os
 import ssl
 import urllib.request
+from datetime import datetime
 
 UA = "Mozilla/5.0 (pa-workbench/1.0)"
-CTX = ssl.create_default_context()
-CTX.check_hostname = False
-CTX.verify_mode = ssl.CERT_NONE
 SEND_URL = "https://wxpusher.zjiecode.com/api/send/message"
 USER_URL = "https://wxpusher.zjiecode.com/api/fun/wxuser/v2"
+
+
+def _ssl_ctx() -> ssl.SSLContext:
+    """默认严格校验证书（详见 quote_client._ssl_ctx 的说明）。
+
+    这里送出去的是 appToken，关掉校验等于把推送凭据交给链路上任意中间人。
+    """
+    ctx = ssl.create_default_context()
+    if os.environ.get("PA_INSECURE_TLS", "").strip() in ("1", "true", "yes"):
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+    return ctx
 
 
 class PushError(RuntimeError):
@@ -37,7 +48,7 @@ def _post(url: str, payload: dict) -> dict:
     req = urllib.request.Request(
         url, data=data, method="POST",
         headers={"User-Agent": UA, "Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=25, context=CTX) as r:
+    with urllib.request.urlopen(req, timeout=25, context=_ssl_ctx()) as r:
         return json.loads(r.read().decode("utf-8", "replace"))
 
 
@@ -46,7 +57,7 @@ def check_subscription() -> dict:
     tok, uid = _creds()
     req = urllib.request.Request(f"{USER_URL}?appToken={tok}&uid={uid}",
                                  headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=25, context=CTX) as r:
+    with urllib.request.urlopen(req, timeout=25, context=_ssl_ctx()) as r:
         d = json.loads(r.read().decode("utf-8", "replace"))
     records = ((d.get("data") or {}).get("records") or [])
     return {
@@ -75,30 +86,37 @@ def send(title: str, content_html: str, summary: str = "") -> dict:
 
 
 def render_report(items: list[dict], title: str = "价格行为 · 买点监控") -> str:
-    """把监控结果渲染成微信里能看的 HTML。红涨绿跌，符合 A 股习惯。"""
-    if not items:
-        return (f"<h3>{title}</h3>"
-                f"<p>本次扫描没有出现「可买入」信号。</p>"
-                f"<p style='color:#888;font-size:12px'>"
-                f"{__import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M')}</p>")
+    """把监控结果渲染成微信里能看的 HTML。红涨绿跌，符合 A 股习惯。
 
-    parts = [f"<h3>{title}</h3>",
-             f"<p style='color:#888;font-size:12px'>"
-             f"{__import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M')} · "
+    所有变量都过一遍 html.escape：股票名称是用户在 APP 里手填后进清单的，
+    属于不可信输入，直接拼进 HTML 会破坏排版、也可能被塞进别的标签。
+    """
+    now = datetime.now().strftime("%Y-%m-%d %H:%M")
+    e = lambda s: html.escape(str(s if s is not None else ""))
+
+    if not items:
+        return (f"<h3>{e(title)}</h3>"
+                f"<p>本次扫描没有出现「可买入」信号。</p>"
+                f"<p style='color:#888;font-size:12px'>{now}</p>")
+
+    parts = [f"<h3>{e(title)}</h3>",
+             f"<p style='color:#888;font-size:12px'>{now} · "
              f"共 {len(items)} 只标的触发</p>"]
     for it in items:
         pct = it.get("changePct")
         color = "#c0392b" if (pct or 0) >= 0 else "#1e8449"
         pct_txt = f"{pct:+.2f}%" if isinstance(pct, (int, float)) else "—"
+        # 有名称就带上：只有 6 位代码时，扫一眼推送还得自己回忆是哪只票
+        label = f"{e(it.get('name'))} {e(it['code'])}".strip() if it.get("name") else e(it["code"])
         parts.append(
             f"<div style='border-left:4px solid #d4a017;padding:6px 10px;margin:10px 0'>"
-            f"<b>{it['code']}</b> "
-            f"<span style='color:{color}'>{it.get('price') or '—'} ({pct_txt})</span></div>")
+            f"<b>{label}</b> "
+            f"<span style='color:{color}'>{e(it.get('price') or '—')} ({pct_txt})</span></div>")
         for s in it.get("buySignals", []):
             parts.append(
-                f"<p style='margin:4px 0'>· <b>{s['model']}</b> "
-                f"<span style='color:#d4a017'>[{s['tf']}]</span><br>"
-                f"<span style='color:#666;font-size:12px'>{s['why']}</span></p>")
+                f"<p style='margin:4px 0'>· <b>{e(s['model'])}</b> "
+                f"<span style='color:#d4a017'>[{e(s['tf'])}]</span><br>"
+                f"<span style='color:#666;font-size:12px'>{e(s['why'])}</span></p>")
     parts.append("<hr><p style='color:#999;font-size:11px'>"
                  "信号来自课程规则转写，需人工复核后再决策。</p>")
     return "".join(parts)
