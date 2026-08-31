@@ -29,6 +29,7 @@ sys.path.insert(0, str(SCRIPT_DIR))
 
 import monitor_engine as ME   # noqa: E402
 import push_wxpusher as PUSH  # noqa: E402
+import quote_client as Q       # noqa: E402  实时补名称用
 
 MODELS = SCRIPT_DIR / "models_v5.json"
 OUT = SCRIPT_DIR / "outputs"
@@ -65,11 +66,21 @@ def load_last_signals() -> dict:
     return {"keys": []}
 
 
-def save_last_signals(keys: set[str]) -> None:
+def save_last_signals(keys: set[str]) -> bool:
+    """写回去重键集合，返回「是否真的变了」。
+
+    只存键集合、不存时间戳：内容仅在信号状态真正变化时才变。
+    但「只在变化时才改内容」还不够——写文件本身也会让 git diff 非空，
+    所以这里再和盘上已有内容比一次，相同就直接不写，
+    否则每次定时扫描都会多一个空 commit（上面 workflow 里那套重试推送也就白跑）。
+    """
+    prev = set(load_last_signals().get("keys", []))
+    if prev == set(keys):
+        return False
     OUT.mkdir(parents=True, exist_ok=True)
-    # 只存键集合，不存时间戳：内容仅在信号状态真正变化时才变，避免每次运行都产生 commit 噪音
     LAST.write_text(json.dumps(sorted(keys), ensure_ascii=False, indent=1),
                    encoding="utf-8")
+    return True
 
 
 def _now() -> str:
@@ -140,6 +151,18 @@ def signal_key(code: str, sig: dict) -> str:
     return f"{code}|{sig['modelId']}|{sig['tf']}"
 
 
+def _fill_name(code: str) -> str:
+    """watchlist 与 summary 都没名字时，实时向行情接口补一次中文名（仅兜底用）。
+
+    绝大多数情况 watchlist 已带名、或 summarize 已带引擎查到的名，
+    不会走到这里；只有两条链都漏了才兜底一次，确保推送不退化成「只显示代码」。
+    """
+    try:
+        return Q.stock_name(code) or ""
+    except Exception:
+        return ""
+
+
 def build_items(summaries: list[dict], names: dict[str, str],
                 only_keys: set[str] | None = None) -> list[dict]:
     """把 summaries 整理成推送用的 items。only_keys 给定时只保留这些键对应的信号。"""
@@ -152,7 +175,11 @@ def build_items(summaries: list[dict], names: dict[str, str],
             continue
         items.append({
             "code": s["code"],
-            "name": names.get(s["code"], ""),
+            # summarize 落盘时已经把名称兜过底，优先信它；
+            # 直接 names.get(code, "") 会在 watchlist 恰好没名字时把引擎查到的名称抹成空
+            # summarize 落盘时已经把引擎查到的名称兜过底（优先信它）；
+            # 再退 watchlist 名称；最后实时补一次，三层都空才允许只显示代码
+            "name": s.get("name") or names.get(s["code"], "") or _fill_name(s["code"]),
             "price": s.get("price"),
             "changePct": s.get("changePct"),
             "buySignals": sigs,
@@ -191,10 +218,16 @@ def do_run(cmd: dict, dry_run: bool) -> None:
             print(f"[run] 已加入 {code} {cmd['name'] or ''}")
     if cmd["remove"]:
         code = cmd["remove"].strip()
+        before = len(wl)
         wl = [w for w in wl if w["code"] != code]
-        save_watchlist(wl)
-        changed = True
-        print(f"[run] 已移除 {code}")
+        if len(wl) == before:
+            # 删一只根本不在清单里的票：不写盘、不算变更，否则会白推一条回执 + 多一个空 commit
+            print(f"[run] {code} 不在清单，忽略")
+        else:
+            save_watchlist(wl)
+            changed = True
+            names.pop(code, None)
+            print(f"[run] 已移除 {code}")
 
     codes = [w["code"] for w in wl]
     if not codes:
