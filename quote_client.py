@@ -16,12 +16,25 @@ import time
 import urllib.parse
 import urllib.request
 from datetime import date, timedelta
+from functools import lru_cache
 
 UA = "Mozilla/5.0 (pa-workbench/1.0)"
-# 部分数据源证书链在 Windows 上校验失败，探测阶段放宽；生产环境可改成严格模式
-CTX = ssl.create_default_context()
-CTX.check_hostname = False
-CTX.verify_mode = ssl.CERT_NONE
+
+
+def _ssl_ctx() -> ssl.SSLContext:
+    """默认严格校验证书。
+
+    原先这里全局关掉了校验（check_hostname=False + CERT_NONE），
+    而请求里带着 API_KEY / ZHITU_TOKEN——一旦链路上有中间人，凭据和行情
+    都会被同时拿走。实测三个数据源在严格模式下都能连通，所以收紧为默认严格。
+    仅在个别环境证书链确实缺失时，用 PA_INSECURE_TLS=1 显式放开，
+    把风险变成一件需要主动勾选的事。
+    """
+    ctx = ssl.create_default_context()
+    if os.environ.get("PA_INSECURE_TLS", "").strip() in ("1", "true", "yes"):
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+    return ctx
 
 HITHINK_BASE = "https://fuyao.aicubes.cn"
 ZHITU_BASE = "https://api.zhituapi.com"
@@ -33,7 +46,7 @@ class QuoteError(RuntimeError):
 
 def _get(url, headers=None, timeout=25):
     req = urllib.request.Request(url, headers={"User-Agent": UA, **(headers or {})})
-    with urllib.request.urlopen(req, timeout=timeout, context=CTX) as r:
+    with urllib.request.urlopen(req, timeout=timeout, context=_ssl_ctx()) as r:
         return r.read().decode("utf-8", "replace")
 
 
@@ -46,25 +59,58 @@ def _key(name: str) -> str:
 
 # ------------------------------------------------------------------ 代码转换
 
-def to_thscode(code: str) -> str:
-    """6 位代码 → 带交易所后缀。先用同花顺检索消歧，失败再按号段推断。"""
-    code = code.strip()
-    if "." in code:
-        return code.upper()
+@lru_cache(maxsize=512)
+def _search_item(code: str) -> dict | None:
+    """在同花顺检索接口里定位这只票，返回整条记录（含 thscode / 名称）。
+
+    缓存是必需的：内部会发一次 HTTP 请求，而一只票在扫描流程里
+    （hithink_daily + snapshot + 名称解析）至少被调三次，N 只票就是 3N 次
+    多余往返。代码→交易所/名称的映射不会变，缓存没有时效问题。
+    """
     try:
         url = f"{HITHINK_BASE}/api/meta/tickers/search?q={urllib.parse.quote(code)}&limit=5"
         d = json.loads(_get(url, {"X-api-key": _key("API_KEY")}))
         for it in ((d.get("data") or {}).get("item") or []):
             if str(it.get("ticker", "")).zfill(6) == code.zfill(6):
-                return it["thscode"]
+                return it
     except Exception:
         pass
+    return None
+
+
+@lru_cache(maxsize=512)
+def to_thscode(code: str) -> str:
+    """6 位代码 → 带交易所后缀。先用同花顺检索消歧，失败再按号段推断。"""
+    code = code.strip()
+    if "." in code:
+        return code.upper()
+    it = _search_item(code)
+    if it and it.get("thscode"):
+        return it["thscode"]
     c = code.zfill(6)
     if c[0] == "6" or c.startswith(("68", "9")):
         return f"{c}.SH"
     if c.startswith(("4", "8")):
         return f"{c}.BJ"
     return f"{c}.SZ"
+
+
+@lru_cache(maxsize=512)
+def stock_name(code: str) -> str:
+    """6 位代码 → 股票中文名。查不到返回空串（让调用方自己决定兜底）。
+
+    注意快照接口 snapshot() 只返回 ticker（就是代码本身），没有名称字段，
+    名称必须走检索接口单独取——这是之前把 name 写成代码的原因。
+    """
+    code = code.strip()
+    it = _search_item(plain_code(code))
+    if not it:
+        return ""
+    for k in ("shortName", "name", "secName", "tickerName", "cnName"):
+        v = it.get(k)
+        if v:
+            return str(v)
+    return ""
 
 
 def plain_code(code: str) -> str:
