@@ -348,7 +348,13 @@ async function addStock(code, name) {
     } catch (e) { toast(e.message || "添加失败"); }
     return;
   }
-  if (!token) { openActions(); return; }
+    // 未设置令牌时不再跳 GitHub：只提示并展开设置面板，避免误点到外链
+  if (!token) {
+    toast("未设置 GitHub Token。请在「多设备共享」里填入令牌（Contents 读写）后再操作");
+    const ds = document.querySelector("details.settings"); if (ds) ds.open = true;
+    const ti = $("#tokenInput"); if (ti && ti.scrollIntoView) ti.scrollIntoView({ behavior: "smooth", block: "center" });
+    return;
+  }
   try {
     const { sha, list } = await getWatchlist();
     if (list.some((w) => w.code === code)) { toast(code + " 已在清单"); return; }
@@ -373,7 +379,13 @@ async function removeStock(code) {
     } catch (e) { toast(e.message || "移除失败"); }
     return;
   }
-  if (!token) { openActions(); return; }
+    // 未设置令牌时不再跳 GitHub：只提示并展开设置面板，避免误点到外链
+  if (!token) {
+    toast("未设置 GitHub Token。请在「多设备共享」里填入令牌（Contents 读写）后再操作");
+    const ds = document.querySelector("details.settings"); if (ds) ds.open = true;
+    const ti = $("#tokenInput"); if (ti && ti.scrollIntoView) ti.scrollIntoView({ behavior: "smooth", block: "center" });
+    return;
+  }
   try {
     const { sha, list } = await getWatchlist();
     const next = list.filter((w) => w.code !== code);
