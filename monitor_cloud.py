@@ -231,12 +231,7 @@ def do_run(cmd: dict, dry_run: bool) -> None:
 
     codes = [w["code"] for w in wl]
     if not codes:
-        print("[run] 监控清单为空，跳过扫描")
-        if changed and not dry_run:
-            # 增删后清单变空也要让用户知道
-            push("价格行为 · 买点监控",
-                 "<p>监控清单已更新，目前为空。发「加 600519」或在工作流里填代码即可添加。</p>",
-                 "清单为空", dry_run)
+        print("[run] 监控清单为空，跳过扫描（按偏好不推送）")
         return
 
     summaries = scan(codes, names, quiet=True)
@@ -277,9 +272,7 @@ def do_view(cmd: dict, dry_run: bool) -> None:
     names = {w["code"]: w.get("name", "") for w in wl}
     codes = [w["code"] for w in wl]
     if not codes:
-        # 清单为空是「删光了」的操作结果，保留一条极简系统提示（非观望信号）
-        push("价格行为 · 监控清单", "<p>监控清单为空。发「加 600519」或在工作流里填代码添加。</p>",
-             "清单为空", dry_run)
+        print("[view] 监控清单为空，按偏好不推送")
         return
     summaries = scan(codes, names, quiet=True)
     items = build_items(summaries, names)  # 当前所有买点（查看时不过滤）
