@@ -1,5 +1,5 @@
 // 买点监控 PWA · Service Worker
-const CACHE = "bm-pwa-v6";   // 版本号变化会触发 Service Worker 更新并重建缓存（v6：修复删除不跳GitHub/清单同步）
+const CACHE = "bm-pwa-v7";   // 版本号变化会触发 Service Worker 更新并重建缓存（v7：监控数据强制走网络、不再喂旧缓存）
 const SHELL = [
   "./", "./index.html", "./app.js", "./styles.css", "./manifest.webmanifest",
   "./icons/icon-192.png", "./icons/icon-512.png", "./icons/icon-180.png"
@@ -19,8 +19,8 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (e) => {
   const u = new URL(e.request.url);
   if (u.origin !== location.origin) return;            // 跨域（api.github.com）走网络
-  if (u.pathname.includes("/outputs/")) {             // 监控数据：网络优先，失败回退缓存
-    e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
+  if (u.pathname.includes("/outputs/")) {             // 监控数据：永远走网络、忽略 HTTP/CDN 缓存，绝不喂旧值；离线才回退
+    e.respondWith(fetch(e.request, { cache: "reload" }).catch(() => caches.match(e.request)));
     return;
   }
   // 外壳：网络优先，失败回退缓存（在线总能拿到最新版本，离线仍可用）
