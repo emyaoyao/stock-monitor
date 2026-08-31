@@ -126,8 +126,14 @@ function render(wl, res) {
   }
 
   const sigEl = $("#signals");
+  // 旧版产物里 summaries 没有 name 字段，用监控清单兜一层，信号卡片才不会只剩代码
+  const wlName = {};
+  for (const w of watch) if (w.code && w.name) wlName[w.code] = w.name;
   const all = [];
-  for (const s of summaries) for (const g of s.buySignals || []) all.push({ ...g, name: s.name, price: s.price });
+  for (const s of summaries) {
+    const nm = s.name || wlName[s.code] || "";
+    for (const g of s.buySignals || []) all.push({ ...g, code: s.code, name: nm, price: s.price });
+  }
   if (!all.length) {
     sigEl.innerHTML = '<div class="empty">当前无买点信号</div>';
   } else {
@@ -348,7 +354,7 @@ async function addStock(code, name) {
     } catch (e) { toast(e.message || "添加失败"); }
     return;
   }
-    // 未设置令牌时不再跳 GitHub：只提示并展开设置面板，避免误点到外链
+  // 未设置令牌时不再跳 GitHub：只提示并展开设置面板，避免误点到外链
   if (!token) {
     toast("未设置 GitHub Token。请在「多设备共享」里填入令牌（Contents 读写）后再操作");
     const ds = document.querySelector("details.settings"); if (ds) ds.open = true;
@@ -379,7 +385,7 @@ async function removeStock(code) {
     } catch (e) { toast(e.message || "移除失败"); }
     return;
   }
-    // 未设置令牌时不再跳 GitHub：只提示并展开设置面板，避免误点到外链
+  // 未设置令牌时不再跳 GitHub：只提示并展开设置面板，避免误点到外链
   if (!token) {
     toast("未设置 GitHub Token。请在「多设备共享」里填入令牌（Contents 读写）后再操作");
     const ds = document.querySelector("details.settings"); if (ds) ds.open = true;
