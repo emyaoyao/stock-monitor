@@ -242,13 +242,16 @@ def do_run(cmd: dict, dry_run: bool) -> None:
     summaries = scan(codes, names, quiet=True)
 
     if cmd["add"] or cmd["remove"]:
-        # 手动增删：给个回执（含当前清单 + 新信号）
+        # 手动增删：仅当出现买入/卖出建议才推送（观望不打扰，你可在 PC/手机端查看）
         items = build_items(summaries, names)
-        wl_txt = "<br>".join(f"· {w['code']} {w.get('name','')}" for w in wl) or "（空）"
-        header = (f"<p>操作完成。当前监控 <b>{len(wl)}</b> 只：</p><p style='color:#666'>{wl_txt}</p>")
-        body = PUSH.render_report(items) if items else "<p>当前无买点信号。</p>"
-        push("价格行为 · 监控清单已更新", header + body,
-             f"监控 {len(wl)} 只" + (f"／新信号 {len(items)}" if items else ""), dry_run)
+        if items:
+            wl_txt = "<br>".join(f"· {w['code']} {w.get('name','')}" for w in wl) or "（空）"
+            header = (f"<p>操作完成。当前监控 <b>{len(wl)}</b> 只：</p><p style='color:#666'>{wl_txt}</p>")
+            body = PUSH.render_report(items)
+            push("价格行为 · 监控清单已更新", header + body,
+                 f"监控 {len(wl)} 只／新信号 {len(items)}", dry_run)
+        else:
+            print("[run] 增删后无买卖建议（观望），按偏好静默不推送")
         # 仍更新去重状态
         cur = {signal_key(s["code"], g) for s in summaries for g in s.get("buySignals", [])}
         save_last_signals(cur)
@@ -274,18 +277,23 @@ def do_view(cmd: dict, dry_run: bool) -> None:
     names = {w["code"]: w.get("name", "") for w in wl}
     codes = [w["code"] for w in wl]
     if not codes:
+        # 清单为空是「删光了」的操作结果，保留一条极简系统提示（非观望信号）
         push("价格行为 · 监控清单", "<p>监控清单为空。发「加 600519」或在工作流里填代码添加。</p>",
              "清单为空", dry_run)
         return
     summaries = scan(codes, names, quiet=True)
     items = build_items(summaries, names)  # 当前所有买点（查看时不过滤）
-    wl_txt = "<br>".join(f"· {w['code']} {w.get('name','')}" for w in wl)
-    header = (f"<h3>价格行为 · 监控清单（{_now()}）</h3>"
-              f"<p style='color:#666'>共 {len(wl)} 只：</p><p style='color:#666'>{wl_txt}</p>"
-              f"<hr>")
-    body = PUSH.render_report(items) if items else "<p>当前无买点信号。</p>"
-    push("价格行为 · 监控清单", header + body,
-         f"监控 {len(wl)} 只" + (f"／买点 {len(items)}" if items else ""), dry_run)
+    if items:
+        wl_txt = "<br>".join(f"· {w['code']} {w.get('name','')}" for w in wl)
+        header = (f"<h3>价格行为 · 监控清单（{_now()}）</h3>"
+                  f"<p style='color:#666'>共 {len(wl)} 只：</p><p style='color:#666'>{wl_txt}</p>"
+                  f"<hr>")
+        body = PUSH.render_report(items)
+        push("价格行为 · 监控清单", header + body,
+             f"监控 {len(wl)} 只／买点 {len(items)}", dry_run)
+    else:
+        # 全部观望、无买卖建议：按你的偏好静默不推送（自行在 PC/手机端查看）
+        print("[view] 当前全部为观望，无买卖建议，按偏好静默不推送")
 
 
 def do_help(dry_run: bool) -> None:
