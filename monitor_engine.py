@@ -23,7 +23,11 @@ import quote_client as Q  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "outputs"
-TFS = ("日线", "60分", "30分", "15分")
+# 周期名单以 quote_client.PERIODS 为唯一来源：两边各写一份字符串常量，
+# 改一处漏一处的后果是「周期名对不上 → 静默取不到数据」，很难查。
+_MONITOR_TFS = ("日线", "60分", "30分", "15分")
+TFS = tuple(tf for tf in Q.PERIODS if tf in _MONITOR_TFS)
+assert len(TFS) == len(_MONITOR_TFS), f"quote_client.PERIODS 缺少周期：{set(_MONITOR_TFS) - set(Q.PERIODS)}"
 PH = re.compile(r"\{\{(\w+)\}\}")
 
 VERDICT_BUY = "可买入"
@@ -52,9 +56,13 @@ def render_tdx(cond: dict, overrides: dict) -> tuple[str, str]:
     return body, expr.upper()
 
 
-def eval_condition(cid: str, bars: dict, overrides: dict) -> tuple[bool, str]:
-    """跑单条条件。返回 (是否命中, 出错信息)。出错时按未命中处理但保留原因。"""
-    cond = MC.by_id(cid)
+def eval_condition(cid: str, bars: dict, overrides: dict,
+                   cond: dict | None = None) -> tuple[bool, str]:
+    """跑单条条件。返回 (是否命中, 出错信息)。出错时按未命中处理但保留原因。
+
+    cond 可由调用方传入，省掉一次 by_id 查找（调用方通常已经取过 cond 拿名称了）。
+    """
+    cond = cond if cond is not None else MC.by_id(cid)
     if not cond:
         return False, f"未知条件 {cid}"
     try:
@@ -79,7 +87,7 @@ def eval_model(model: dict, bars: dict) -> dict:
             cid = item["id"] if isinstance(item, dict) else item
             ov = (item.get("params") or {}) if isinstance(item, dict) else {}
             cond = MC.by_id(cid)
-            hit, err = eval_condition(cid, bars, ov)
+            hit, err = eval_condition(cid, bars, ov, cond)
             if err:
                 errors.append(f"{cond['name'] if cond else cid}: {err}")
             rows.append({
@@ -128,11 +136,13 @@ def eval_model(model: dict, bars: dict) -> dict:
 def evaluate_stock(code: str, models: list[dict], tfs=TFS) -> dict:
     """对一只股票跑指定模型（默认全部），每个周期各跑一遍。"""
     data = Q.fetch_all(code, tfs)
-    snap = Q.snapshot([code]).get(code.zfill(6).split(".")[0], {})
+    snap = Q.snapshot([code]).get(Q.plain_code(code), {})
+    # 快照的 ticker 就是代码本身，不是名称；名称要走检索接口单独取
     result = {
         "code": code,
-        "name": snap.get("ticker") or "",
-        "price": snap.get("last_price"),
+        "name": Q.stock_name(code),
+        # 开盘前 / 停牌时 last_price 为 null，退回昨收，避免界面上一片空白
+        "price": snap.get("last_price") if snap.get("last_price") is not None else snap.get("prev_price"),
         "changePct": snap.get("price_change_ratio_pct"),
         "timeframes": {},
         "models": {},
@@ -164,7 +174,9 @@ def evaluate_stock(code: str, models: list[dict], tfs=TFS) -> dict:
 
 
 def load_models(path: Path | None = None) -> list[dict]:
-    p = path or (OUT / "models_v5.json")
+    # 默认就近取同目录的 models_v5.json（与 monitor_cloud 的 MODELS 同一文件），
+    # 不再回退到 outputs/ 下——那里已经没有副本，回退过去只会 FileNotFoundError。
+    p = path or (Path(__file__).resolve().parent / "models_v5.json")
     d = json.loads(p.read_text(encoding="utf-8"))
     return d["models"]
 
@@ -183,6 +195,9 @@ def summarize(result: dict) -> dict:
                 })
     return {
         "code": result["code"],
+        # 名称随汇总一起落盘：PWA / 工作台的信号卡片直接读 summaries，
+        # 少这个字段信号就只剩代码，看不出是哪只票
+        "name": result.get("name", ""),
         "price": result.get("price"),
         "changePct": result.get("changePct"),
         "buySignals": hits,
