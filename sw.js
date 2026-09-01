@@ -1,5 +1,5 @@
 // 买点监控 PWA · Service Worker
-const CACHE = "bm-pwa-v7";   // 版本号变化会触发 Service Worker 更新并重建缓存（v7：监控数据强制走网络、不再喂旧缓存）
+const CACHE = "bm-pwa-v8";   // 版本号变化会触发 Service Worker 更新并重建缓存（v8：监控数据强制走网络、不再喂旧缓存；bump 强制所有旧客户端清缓存重装）
 const SHELL = [
   "./", "./index.html", "./app.js", "./styles.css", "./manifest.webmanifest",
   "./icons/icon-192.png", "./icons/icon-512.png", "./icons/icon-180.png"
