@@ -1,8 +1,14 @@
-"""统一行情客户端：日线走同花顺，分钟线走智兔，互为主备。
+"""统一行情客户端：日线走同花顺，分钟线走智兔，腾讯做最后兜底。
 
 单位口径（踩过一次坑）：
   同花顺 volume 单位是「股」，智兔 v 单位是「手」。不统一的话
   `V>MA(V,20)*1.5` 这类放量条件在两个源上结论完全相反。这里统一成「股」。
+
+降级链（2026-09-01 加的第三级）：
+  日线   同花顺（有 API_KEY）→ 智兔日线 → 腾讯前复权日线
+  分钟线 智兔（唯一有授权的）  → 腾讯分钟线
+  加腾讯是因为分钟线只有智兔一个源时，智兔一挂 60/30/15 分就整片「无数据」，
+  而日线照常显示，看起来像页面坏了。腾讯免费公开，能兜住这个单点故障。
 
 字段统一输出：{'t':[时间串], 'o':[], 'h':[], 'l':[], 'c':[], 'v':[]}
 """
@@ -178,6 +184,69 @@ def zhitu_history(code: str, period: str, days: int = 120) -> list[dict] | None:
         return None
 
 
+def _txcode(code: str) -> str:
+    """6 位代码 → 腾讯代码（sh/sz/bj 前缀）。腾讯的段格式与同花顺不同，单独一套。"""
+    c = plain_code(code)
+    if c.startswith(("60", "68", "9", "5", "11")):
+        return "sh" + c
+    if c.startswith(("4", "8")):
+        return "bj" + c
+    return "sz" + c
+
+
+def _tx_time(t: str) -> str:
+    """腾讯时间 → 与智兔一致的 'YYYY-MM-DD HH:MM:00'。日线只保留日期。"""
+    s = str(t or "")
+    d = "".join(ch for ch in s if ch.isdigit())
+    if len(d) >= 12:
+        return f"{d[0:4]}-{d[4:6]}-{d[6:8]} {d[8:10]}:{d[10:12]}:00"
+    if len(d) == 8:
+        return f"{d[0:4]}-{d[4:6]}-{d[6:8]}"
+    return s
+
+
+TX_MIN_PERIOD = {"60": "m60", "30": "m30", "15": "m15", "5": "m5"}
+
+
+def tencent_history(code: str, period: str, count: int = 640) -> list[dict] | None:
+    """腾讯 K 线兜底（免费、无需 token）。period: d / 60 / 30 / 15 / 5。
+
+    为什么要有它：分钟线原先只有智兔一个源，智兔一挂（token 过期 / 额度用尽 /
+    接口调整），真实扫描里的 60分·30分·15分 就全部显示「无数据」，而日线因为
+    有同花顺兜底照常工作——看起来像是页面坏了。腾讯这个是免费公开源，
+    作为最后一级兜底，至少保证多周期扫描不会整片为空。
+
+    段格式与智兔不同：[t, o, c, h, l, v]，第 3 位是**收盘价**不是最高价，
+    v 单位是**手**（同花顺是股），这里统一成股。
+    """
+    try:
+        tx = _txcode(code)
+        n = max(60, min(int(count or 640), 640))  # 实测 >640 会被接口悄悄降回 320 根
+        if period == "d":
+            url = (f"https://ifzq.gtimg.cn/appstock/app/fqkline/get"
+                   f"?param={tx},day,,,{n},qfq")
+            key = "qfqday"
+        else:
+            url = (f"https://ifzq.gtimg.cn/appstock/app/kline/mkline"
+                   f"?param={tx},{TX_MIN_PERIOD.get(str(period), period)},,{n}")
+            key = str(TX_MIN_PERIOD.get(str(period), period))
+        d = json.loads(_get(url))
+        arr = ((d.get("data") or {}).get(tx) or {}).get(key) or []
+        if not arr:
+            return None
+        out = []
+        for it in arr:
+            if len(it) < 6:
+                continue
+            out.append({
+                "t": _tx_time(it[0]), "o": it[1], "c": it[2], "h": it[3], "l": it[4],
+                "v": float(it[5] or 0) * 100,  # 手 → 股
+            })
+        return _clean(out)
+    except Exception:
+        return None
+
+
 def _clean(rows: list[dict]) -> list[dict]:
     """丢掉残缺行并按时间排序。数据源偶发返回 null，不处理会让后续计算崩掉。"""
     out = []
@@ -226,12 +295,18 @@ def fetch(code: str, tf: str, days: int = 400) -> tuple[dict, str]:
         rows = zhitu_history(code, "d", days)
         if rows:
             return to_bars(rows), "智兔"
+        rows = tencent_history(code, "d", max(250, min(days, 640)))
+        if rows:
+            return to_bars(rows), "腾讯"
     else:
-        # 分钟线只智兔有，窗口按周期缩小以免拉太多
+        # 分钟线：智兔为主，腾讯兜底（窗口按周期缩小以免拉太多）
         rows = zhitu_history(code, period, max(30, min(days, 120)))
         if rows:
             return to_bars(rows), "智兔"
-    raise QuoteError(f"{code} {tf} 无数据（同花顺日线 + 智兔 均已尝试）")
+        rows = tencent_history(code, period, 640)
+        if rows:
+            return to_bars(rows), "腾讯"
+    raise QuoteError(f"{code} {tf} 无数据（同花顺/智兔/腾讯 均已尝试）")
 
 
 def fetch_all(code: str, tfs=("日线", "60分", "30分", "15分")) -> dict:
