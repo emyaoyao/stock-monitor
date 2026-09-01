@@ -14,5 +14,8 @@
  "600594|m_tight_channel_long|日线",
  "600594|m_two_leg_long|日线",
  "601020|m_rally_short|15分",
- "601020|m_tight_channel_long|日线"
+ "601020|m_tight_channel_long|日线",
+ "603376|m_open_gap_long|日线",
+ "603376|m_tight_channel_long|15分",
+ "603376|m_tight_channel_long|30分"
 ]
