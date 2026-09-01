@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-01 01:00:35",
+ "generatedAt": "2026-09-01 01:21:43",
  "tfs": [
   "日线",
   "60分",
@@ -11,8 +11,8 @@
   {
    "code": "601020",
    "name": "华钰矿业",
-   "price": 23.2,
-   "changePct": null,
+   "price": 22.94,
+   "changePct": -1.12069,
    "timeframes": {
     "日线": {
      "source": "同花顺",
@@ -10503,13 +10503,13 @@
      }
     }
    },
-   "fetchedAt": "2026-09-01 01:00:05"
+   "fetchedAt": "2026-09-01 01:21:15"
   },
   {
    "code": "301127",
    "name": "武汉天源",
-   "price": 18.18,
-   "changePct": null,
+   "price": 18.19,
+   "changePct": 0.055006,
    "timeframes": {
     "日线": {
      "source": "同花顺",
@@ -20996,7 +20996,7 @@
      }
     }
    },
-   "fetchedAt": "2026-09-01 01:00:14"
+   "fetchedAt": "2026-09-01 01:21:24"
   },
   {
    "code": "002237",
@@ -31509,13 +31509,13 @@
      }
     }
    },
-   "fetchedAt": "2026-09-01 01:00:25"
+   "fetchedAt": "2026-09-01 01:21:33"
   },
   {
    "code": "600594",
    "name": "益佰制药",
-   "price": 4.07,
-   "changePct": null,
+   "price": 4.05,
+   "changePct": -0.4914,
    "timeframes": {
     "日线": {
      "source": "同花顺",
@@ -42008,15 +42008,15 @@
      }
     }
    },
-   "fetchedAt": "2026-09-01 01:00:34"
+   "fetchedAt": "2026-09-01 01:21:42"
   }
  ],
  "summaries": [
   {
    "code": "601020",
    "name": "华钰矿业",
-   "price": 23.2,
-   "changePct": null,
+   "price": 22.94,
+   "changePct": -1.12069,
    "buySignals": [
     {
      "model": "两腿回调做多（TBTL）",
@@ -42043,13 +42043,13 @@
      "label": "可买入"
     }
    ],
-   "fetchedAt": "2026-09-01 01:00:05"
+   "fetchedAt": "2026-09-01 01:21:15"
   },
   {
    "code": "301127",
    "name": "武汉天源",
-   "price": 18.18,
-   "changePct": null,
+   "price": 18.19,
+   "changePct": 0.055006,
    "buySignals": [
     {
      "model": "两腿回调做多（TBTL）",
@@ -42060,7 +42060,7 @@
      "label": "可买入"
     }
    ],
-   "fetchedAt": "2026-09-01 01:00:14"
+   "fetchedAt": "2026-09-01 01:21:24"
   },
   {
    "code": "002237",
@@ -42077,13 +42077,13 @@
      "label": "可买入"
     }
    ],
-   "fetchedAt": "2026-09-01 01:00:25"
+   "fetchedAt": "2026-09-01 01:21:33"
   },
   {
    "code": "600594",
    "name": "益佰制药",
-   "price": 4.07,
-   "changePct": null,
+   "price": 4.05,
+   "changePct": -0.4914,
    "buySignals": [
     {
      "model": "两腿回调做多（TBTL）",
@@ -42110,7 +42110,7 @@
      "label": "可买入"
     }
    ],
-   "fetchedAt": "2026-09-01 01:00:34"
+   "fetchedAt": "2026-09-01 01:21:42"
   }
  ]
 }
