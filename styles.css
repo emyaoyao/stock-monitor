@@ -152,3 +152,32 @@ body {
   transition: .25s; z-index: 50; max-width: 90vw; text-align: center;
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ---------- 个股追踪 / K 线 / 事实判断 ---------- */
+#detail { margin-top: 4px; }
+.detail-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.detail-name { font-weight: 700; font-size: 16px; }
+.detail-price { font-family: var(--mono); font-size: 14px; text-align: right; }
+.detail-price .up { color: var(--up); }
+.detail-price .down { color: var(--down); }
+.tf-tabs { display: flex; gap: 6px; }
+.tf-tabs button {
+  border: 1px solid var(--border); background: var(--panel2); color: var(--muted);
+  border-radius: 8px; padding: 5px 10px; font-size: 12px; cursor: pointer; transition: .15s;
+}
+.tf-tabs button.on { border-color: var(--cyan); color: var(--cyan); }
+.tf-tabs button:active { transform: scale(.95); }
+#kline { width: 100%; height: 240px; display: block; margin: 4px 0 6px; }
+.klinemeta { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-bottom: 8px; }
+.verdict {
+  border-radius: 10px; padding: 10px 12px; font-weight: 700; font-size: 14px; margin-bottom: 8px;
+  border: 1px solid var(--border); line-height: 1.4;
+}
+.verdict.v-buy { background: rgba(255,77,79,.12); border-color: var(--up); color: var(--up); }
+.verdict.v-watch { background: rgba(251,191,36,.10); border-color: var(--amber); color: var(--amber); }
+.verdict.v-wait { background: rgba(107,122,153,.10); border-color: var(--border); color: var(--muted); }
+.kv { display: flex; gap: 8px; font-size: 13px; padding: 4px 0; border-bottom: 1px dashed rgba(255,255,255,.06); }
+.kv b { color: var(--muted); font-weight: 600; min-width: 80px; flex-shrink: 0; }
+.src { font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+.stock { cursor: pointer; }
+.stock.selected { border-color: var(--cyan); box-shadow: 0 0 0 1px rgba(34,211,238,.3) inset; }
