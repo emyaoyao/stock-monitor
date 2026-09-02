@@ -1,17 +1,12 @@
 [
- "003006|m_range_breakout_long|15分",
- "003006|m_tight_channel_long|15分",
  "003006|m_tight_channel_long|30分",
  "003006|m_tight_channel_long|60分",
- "600192|m_tight_channel_long|15分",
- "600192|m_tight_channel_long|30分",
- "600192|m_two_leg_long|15分",
- "600594|m_rally_short|15分",
- "600594|m_tight_channel_short|60分",
+ "003006|m_two_leg_long|15分",
+ "600192|m_two_leg_long|30分",
+ "600594|m_rally_short|30分",
  "600594|m_two_leg_long|日线",
  "600869|m_tight_channel_long|15分",
- "600869|m_tight_channel_long|60分",
  "600869|m_tight_channel_long|日线",
- "600869|m_two_leg_long|15分",
- "600869|m_two_leg_long|日线"
+ "600869|m_two_leg_long|日线",
+ "603376|m_two_leg_long|60分"
 ]
