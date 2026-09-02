@@ -36,6 +36,25 @@
     </div>
     <div id="watchlist"></div>
 
+    <div class="section-title">个股追踪 · 点上方股票看 K 线与判断</div>
+    <div class="card" id="detail">
+      <div class="detail-head">
+        <div class="detail-id">
+          <div class="detail-name" id="detailName">—</div>
+          <div class="detail-price" id="detailPrice"></div>
+        </div>
+      </div>
+      <div class="tf-tabs" id="tfTabs">
+        <button data-tf="day" class="on">日线</button>
+        <button data-tf="60">60分</button>
+        <button data-tf="30">30分</button>
+        <button data-tf="15">15分</button>
+      </div>
+      <canvas id="kline"></canvas>
+      <div class="klinemeta" id="klineMeta"></div>
+      <div id="verdict"></div>
+    </div>
+
     <div class="section-title">买点信号</div>
     <div id="signals"></div>
 
