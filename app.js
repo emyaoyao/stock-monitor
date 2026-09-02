@@ -10,6 +10,12 @@ let proxy = localStorage.getItem("bm_proxy") || "";
 let appKey = localStorage.getItem("bm_key") || "";
 const $ = (s) => document.querySelector(s);
 
+// 个股追踪：当前选中股票 / 周期 / 最近一次清单与信号（供点击切换复用）
+let selectedCode = "";
+let curTf = "day";
+let lastWatch = [];
+let lastSummaries = [];
+
 // 同步链接支持：打开 #t=<令牌> 的链接即自动完成配置，随后把令牌从地址栏抹掉，
 // 避免它留在浏览器历史或被误复制出去。
 (function restoreFromHash() {
@@ -86,6 +92,8 @@ async function loadAll() {
 function render(wl, res) {
   const watch = Array.isArray(wl) ? wl : [];
   const summaries = (res && res.summaries) || [];
+  lastWatch = watch; lastSummaries = summaries;
+  if (!watch.some((w) => w.code === selectedCode)) selectedCode = watch.length ? watch[0].code : "";
   const byCode = {};
   for (const s of summaries) byCode[s.code] = s;
 
@@ -103,13 +111,17 @@ function render(wl, res) {
   const wlEl = $("#watchlist");
   if (!watch.length) {
     wlEl.innerHTML = '<div class="empty">清单为空，在上方添加代码</div>';
+    const dn = $("#detailName"); if (dn) dn.textContent = "—";
+    const dp = $("#detailPrice"); if (dp) dp.textContent = "";
+    const vd = $("#verdict"); if (vd) vd.innerHTML = '<div class="muted">添加股票后，点它即可看 K 线与判断</div>';
   } else {
     wlEl.innerHTML = watch
       .map((w) => {
         const s = byCode[w.code] || {};
         const c = s.changePct;
         const n = s.buySignals ? s.buySignals.length : 0;
-        return `<div class="card stock">
+        const sel = w.code === selectedCode ? " selected" : "";
+        return `<div class="card stock${sel}" data-code="${esc(w.code)}">
           <div><div class="name">${esc(w.name || w.code)}</div><div class="code">${esc(w.code)}</div></div>
           <div class="px">
             <div class="last ${pctClass(c)}">${s.price != null ? s.price : "—"}</div>
@@ -123,6 +135,16 @@ function render(wl, res) {
     wlEl.querySelectorAll("[data-rm]").forEach((b) =>
       b.addEventListener("click", () => removeStock(b.getAttribute("data-rm")))
     );
+    // 点股票卡片 → 打开该股 K 线追踪（点哪只看哪只，与电脑端一致）
+    wlEl.querySelectorAll(".stock").forEach((card) => {
+      const code = card.getAttribute("data-code");
+      card.addEventListener("click", (e) => {
+        if (e.target.closest("[data-rm]")) return;   // 点删除按钮不触发切换
+        selectStock(code);
+      });
+    });
+    // 保持选中并刷新该股 K 线（每 60s 自动刷新一次）
+    selectStock(selectedCode);
   }
 
   const sigEl = $("#signals");
@@ -523,3 +545,147 @@ if ("serviceWorker" in navigator) {
 loadAll();
 setInterval(loadAll, REFRESH_MS);
 document.addEventListener("visibilitychange", () => { if (!document.hidden) loadAll(); });
+
+// ---------- 个股追踪：K 线 + 基于 K 线的事实判断（移植自电脑端监控页） ----------
+// 腾讯 K 线接口带 CORS:*，手机端跨域直连无压力
+async function txKline(code, period, count) {
+  const tx = txCode(code);
+  const url = period === "day"
+    ? `https://ifzq.gtimg.cn/appstock/app/fqkline/get?param=${tx},day,,,${count},qfq`
+    : `https://ifzq.gtimg.cn/appstock/app/kline/mkline?param=${tx},${period},,${count}`;
+  const r = await fetch(url, { cache: "no-store" });
+  if (!r.ok) throw new Error("K线请求失败 " + r.status);
+  const j = await r.json();
+  const d = (j.data || {})[tx] || {};
+  const arr = d[period === "day" ? "qfqday" : period] || d.day || [];
+  // 腾讯每段 [日期,开,收,高,低,量] —— 第 3 位是收盘价不是最高价
+  return arr.map((x) => ({ t: x[0], o: +x[1], c: +x[2], h: +x[3], l: +x[4], v: +x[5] }))
+    .filter((b) => isFinite(b.c) && b.c > 0);
+}
+function maSeries(bars, n) {
+  const out = new Array(bars.length).fill(null); let s = 0;
+  for (let i = 0; i < bars.length; i++) { s += bars[i].c; if (i >= n) s -= bars[i - n].c; if (i >= n - 1) out[i] = s / n; }
+  return out;
+}
+function fmtBarTime(t) {
+  if (/^\d{12}$/.test(t)) return `${t.slice(4, 6)}-${t.slice(6, 8)} ${t.slice(8, 10)}:${t.slice(10, 12)}`;
+  if (/^\d{8}$/.test(t)) return `${t.slice(0, 4)}-${t.slice(4, 6)}-${t.slice(6, 8)}`;
+  return t || "";
+}
+function parseBarDate(t) {
+  const m = /^(\d{4})(\d{2})(\d{2})/.exec(String(t || "").replace(/\D/g, ""));
+  return m ? new Date(+m[1], +m[2] - 1, +m[3]) : new Date(0);
+}
+// 纯 canvas 蜡烛图（涨红跌绿，A股习惯），手机端自适应宽度
+function drawKline(cv, bars, maN) {
+  maN = maN === undefined ? 20 : maN;
+  const dpr = window.devicePixelRatio || 1;
+  const W = cv.clientWidth || 360, H = 240;
+  cv.width = W * dpr; cv.height = H * dpr; cv.style.height = H + "px";
+  const g = cv.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, W, H);
+  if (!bars.length) { g.fillStyle = "#6b7a99"; g.font = "14px sans-serif"; g.fillText("暂无数据", 20, H / 2); return; }
+  const PL = 8, PR = 58, PT = 12, PB = 24, cw = W - PL - PR, ch = H - PT - PB;
+  let hi = -Infinity, lo = Infinity;
+  bars.forEach((b) => { if (b.h > hi) hi = b.h; if (b.l < lo) lo = b.l; });
+  const ma = (maN > 0 && bars.length >= maN) ? maSeries(bars, maN) : null;
+  if (ma) ma.forEach((v) => { if (v != null) { if (v > hi) hi = v; if (v < lo) lo = v; } });
+  const pad = (hi - lo) * 0.06 || hi * 0.01 || 1; hi += pad; lo -= pad;
+  const X = (i) => PL + (bars.length < 2 ? cw / 2 : (i / (bars.length - 1)) * cw);
+  const Y = (p) => PT + ch - ((p - lo) / (hi - lo)) * ch;
+  g.strokeStyle = "rgba(120,160,255,.10)"; g.lineWidth = 1; g.font = "10px ui-monospace,monospace"; g.textBaseline = "middle";
+  for (let i = 0; i <= 4; i++) { const y = PT + (ch / 4) * i, v = hi - ((hi - lo) / 4) * i;
+    g.beginPath(); g.moveTo(PL, y); g.lineTo(PL + cw, y); g.stroke();
+    g.fillStyle = "#6b7a99"; g.fillText(v.toFixed(2), PL + cw + 4, y); }
+  const bw = Math.max(1.4, Math.min(8, cw / bars.length * 0.66));
+  bars.forEach((b, i) => { const x = X(i), up = b.c >= b.o, col = up ? "#ff4d4f" : "#16c784";
+    g.strokeStyle = col; g.fillStyle = col; g.lineWidth = 1;
+    g.beginPath(); g.moveTo(Math.round(x) + .5, Y(b.h)); g.lineTo(Math.round(x) + .5, Y(b.l)); g.stroke();
+    const yo = Y(b.o), yc = Y(b.c), top = Math.min(yo, yc), hgt = Math.max(1, Math.abs(yc - yo));
+    if (up) g.fillRect(x - bw / 2, top, bw, hgt); else g.strokeRect(x - bw / 2, top, bw, hgt); });
+  if (ma) {
+    g.strokeStyle = "#fbbf24"; g.lineWidth = 1.6; g.beginPath(); let started = false;
+    ma.forEach((v, i) => { if (v == null) return; const x = X(i), y = Y(v); if (!started) { g.moveTo(x, y); started = true; } else g.lineTo(x, y); });
+    g.stroke();
+    const lv = ma[bars.length - 1];
+    if (lv != null) { const ly = Math.min(Math.max(Y(lv), PT + 4), PT + ch - 4);
+      g.fillStyle = "#fbbf24"; g.font = "10px ui-monospace,monospace"; g.textBaseline = "middle"; g.textAlign = "left";
+      g.fillText("MA" + maN + " " + lv.toFixed(2), PL + 4, ly - 8); }
+  }
+  g.fillStyle = "#6b7a99"; g.textBaseline = "top";
+  [0, Math.floor(bars.length / 2), bars.length - 1].forEach((i) => { const t = fmtBarTime(bars[i].t), x = X(i);
+    g.textAlign = i === 0 ? "left" : (i === bars.length - 1 ? "right" : "center");
+    g.fillText(t, Math.min(Math.max(x, PL + 2), PL + cw - 2), PT + ch + 6); });
+  g.textAlign = "left";
+}
+// 基于 K 线的快速事实判断（与电脑端同算法）：趋势 / EMA20 / 末根 / 量能 / 结论
+function renderVerdict(bars, code, name) {
+  const el = $("#verdict"); if (!el) return;
+  if (!bars || !bars.length) { el.innerHTML = '<div class="muted">暂无 K 线数据</div>'; return; }
+  const N = Math.min(20, bars.length);
+  const recent = bars.slice(-N);
+  let up = true, down = true;
+  for (let i = 1; i < recent.length; i++) { if (recent[i].h <= recent[i - 1].h) up = false; if (recent[i].l <= recent[i - 1].l) down = false; }
+  const trendTxt = (up && down) ? "多头（HH+HL）" : (!up && !down) ? "空头（LH+LL）" : "震荡";
+  const k = Math.min(20, bars.length);
+  const win = bars.slice(-k); let ema = win[0].c; const a = 2 / (k + 1);
+  win.forEach((b) => ema = a * b.c + (1 - a) * ema);
+  const last = bars[bars.length - 1];
+  const above = last.c >= ema;
+  const rng = (last.h - last.l) || 1, bodyR = last.c - last.o;
+  const upBar = last.c >= last.o;
+  const lowerWick = (last.o - last.l) / rng, upperWick = (last.h - last.o) / rng;
+  const bullRev = upBar && lowerWick > 0.5 && Math.abs(bodyR) / rng < 0.4;
+  const vols = bars.slice(-20).map((b) => b.v || 0);
+  const avgV = vols.reduce((s, v) => s + v, 0) / (vols.length || 1);
+  const volUp = last.v > avgV * 1.2;
+  let verdict, cls;
+  if (above && upBar && up) { verdict = "关注/可买入：价格在均线上方、结构偏多、末根走强"; cls = "v-buy"; }
+  else if (above) { verdict = "关注：价格在均线上方，但结构尚不清晰"; cls = "v-watch"; }
+  else if (!above && down) { verdict = "观望：价格在均线下方、结构偏空"; cls = "v-wait"; }
+  else { verdict = "观望：方向不明，等结构清晰"; cls = "v-wait"; }
+  el.innerHTML = `<div class="verdict ${cls}">${esc(verdict)}</div>
+    <div class="kv"><b>标的</b>${esc(name || "")} ${esc(code)}</div>
+    <div class="kv"><b>趋势(近${N}根)</b>${esc(trendTxt)}</div>
+    <div class="kv"><b>EMA20</b>收盘 ${above ? "在均线上方 ▲" : "在均线下方 ▼"}（EMA≈${ema.toFixed(2)}）</div>
+    <div class="kv"><b>末根</b>${upBar ? "阳线" : "阴线"}　下影占比 ${Math.round(lowerWick * 100)}%　${bullRev ? "⚠ 长下影，疑似看涨反转" : ""}</div>
+    <div class="kv"><b>量能</b>${volUp ? "放量" : "平量/缩量"}（末根 ${((last.v || 0) / 10000).toFixed(1)}万手 vs 均 ${((avgV || 0) / 10000).toFixed(1)}万手）</div>
+    <div class="src">以上为基于 K 线本身的快速判断，仅供参考；完整模型结论见上方「买点信号」。若 K 线出现异常（缺口/停牌/复权错位），以你目视为准。</div>`;
+}
+async function selectStock(code) {
+  selectedCode = code;
+  document.querySelectorAll("#watchlist .stock").forEach((c) =>
+    c.classList.toggle("selected", c.getAttribute("data-code") === code));
+  const name = $("#detailName"), price = $("#detailPrice");
+  const s = (lastSummaries || []).find((x) => x.code === code) || {};
+  const w = (lastWatch || []).find((x) => x.code === code) || {};
+  const nm = s.name || w.name || code;
+  if (name) name.textContent = nm + "  " + code;
+  if (price) { const c = s.changePct;
+    price.innerHTML = s.price != null ? `<span class="${pctClass(c)}">${s.price} ${fmtPct(c)}</span>` : ""; }
+  await drawDetail(nm || code);
+}
+async function drawDetail(nm) {
+  const cv = $("#kline"), meta = $("#klineMeta");
+  if (meta) meta.textContent = "K线加载中…";
+  try {
+    const n = curTf === "day" ? 240 : 320;
+    const bars = await txKline(selectedCode, curTf, n);
+    drawKline(cv, bars, 20);
+    renderVerdict(bars, selectedCode, nm);
+    if (meta) {
+      const last = bars[bars.length - 1];
+      let ago = "";
+      if (last) { const mins = Math.round((Date.now() - parseBarDate(last.t).getTime()) / 60000);
+        ago = mins < 0 ? "时间晚于本机" : mins < 5 ? "刚刚" : mins < 60 ? mins + " 分钟前" : mins < 1440 ? Math.floor(mins / 60) + " 小时前" : Math.floor(mins / 1440) + " 天前"; }
+      meta.textContent = `共 ${bars.length} 根 · 末根 ${fmtBarTime(last ? last.t : "")} · ${ago}`;
+    }
+  } catch (e) { if (meta) meta.textContent = "K线加载失败：" + (e.message || e); }
+}
+// 周期切换（日 / 60 / 30 / 15 分）
+$("#tfTabs").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-tf]"); if (!b) return;
+  document.querySelectorAll("#tfTabs button").forEach((x) => x.classList.remove("on"));
+  b.classList.add("on");
+  curTf = b.getAttribute("data-tf");
+  if (selectedCode) drawDetail((lastSummaries.find((x) => x.code === selectedCode) || {}).name || selectedCode);
+});
