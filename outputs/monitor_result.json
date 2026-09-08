@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-07 10:37:01",
+ "generatedAt": "2026-09-08 05:28:54",
  "tfs": [
   "日线",
   "60分",
@@ -11,14 +11,14 @@
   {
    "code": "600594",
    "name": "益佰制药",
-   "price": 3.72,
-   "changePct": -0.268097,
+   "price": 3.9,
+   "changePct": 4.83871,
    "timeframes": {
     "日线": {
      "source": "同花顺",
-     "bars": 425,
-     "last": "2026-09-06",
-     "close": 3.72
+     "bars": 426,
+     "last": "2026-09-07",
+     "close": 3.9
     },
     "60分": {
      "source": "智兔",
@@ -50,9 +50,9 @@
        "verdictLabel": "观望",
        "direction": "多",
        "why": "命中排除条件：深回调（趋势存疑）",
-       "primaryHit": 1,
+       "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 3,
        "secondaryNeed": 1,
        "exclusionHit": [
         "深回调（趋势存疑）"
@@ -72,7 +72,7 @@
          "name": "收盘价在 EMA 上方",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "课程里说的均线默认就是 EMA20。多头希望回调时价格维持在均线上方，首次回调到均线不破是标准的顺势做多点。"
         },
@@ -90,7 +90,7 @@
          "name": "看涨信号K线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -108,7 +108,7 @@
          "name": "收盘接近最高",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -150,7 +150,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -482,17 +482,15 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "可买入",
+       "verdictLabel": "可买入",
        "direction": "多",
-       "why": "命中排除条件：单边下跌（连续趋势K线）",
-       "primaryHit": 2,
+       "why": "首要 3/3 全中，次要 1（需 1）",
+       "primaryHit": 3,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
-       "exclusionHit": [
-        "单边下跌（连续趋势K线）"
-       ],
+       "exclusionHit": [],
        "rows": [
         {
          "id": "trend_up_structure",
@@ -517,7 +515,7 @@
          "name": "收盘价在 EMA 上方",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "课程里说的均线默认就是 EMA20。多头希望回调时价格维持在均线上方，首次回调到均线不破是标准的顺势做多点。"
         },
@@ -526,7 +524,7 @@
          "name": "看涨信号K线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -562,13 +560,13 @@
          "name": "单边下跌（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "连续多根K线收盘不断走低,空头掌控。此时抢反弹是逆势交易。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -839,13 +837,13 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要 2/3，次要 2（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -872,7 +870,7 @@
          "name": "收盘价在 EMA 上方",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "课程里说的均线默认就是 EMA20。多头希望回调时价格维持在均线上方，首次回调到均线不破是标准的顺势做多点。"
         },
@@ -881,7 +879,7 @@
          "name": "看涨信号K线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -899,7 +897,7 @@
          "name": "收盘接近最高",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -923,7 +921,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -1194,11 +1192,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要 2/3，次要 0（需 2）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 2,
@@ -1218,7 +1216,7 @@
          "name": "突破且收盘强势",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "突破K线必须收在高位——收盘接近最高、实体饱满才说明多头真金白银推上去。收盘软弱(长上影)的突破大概率失败。"
         },
@@ -1227,7 +1225,7 @@
          "name": "大阳线（实体显著）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "实体大于近 N 根K线平均实体的 K/10 倍（默认 1.5 倍）。大阳线本身就是一次突破,是最强的做多信号K线。"
         },
@@ -1287,7 +1285,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -1593,7 +1591,7 @@
        "why": "首要仅 1/3",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -1629,7 +1627,7 @@
          "name": "收盘接近最高",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -1662,7 +1660,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -1906,17 +1904,15 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "命中排除条件：单边下跌（连续趋势K线）",
+       "why": "首要 1/2，次要 1（需 1）",
        "primaryHit": 1,
        "primaryNeed": 2,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
-       "exclusionHit": [
-        "单边下跌（连续趋势K线）"
-       ],
+       "exclusionHit": [],
        "rows": [
         {
          "id": "tight_channel_up",
@@ -1950,7 +1946,7 @@
          "name": "看涨信号K线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -1977,13 +1973,13 @@
          "name": "单边下跌（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "连续多根K线收盘不断走低,空头掌控。此时抢反弹是逆势交易。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -2227,13 +2223,13 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "关注",
-       "verdictLabel": "关注",
+       "verdict": "可买入",
+       "verdictLabel": "可买入",
        "direction": "多",
-       "why": "首要 2/3，次要 1（需 1）",
-       "primaryHit": 2,
+       "why": "首要 3/3 全中，次要 2（需 1）",
+       "primaryHit": 3,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -2242,7 +2238,7 @@
          "name": "宽上涨通道（可做波段）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "通道足够宽时,多头在通道下沿买、上沿卖,波段空间才够。宽度用近 N 根K线的平均真实波幅衡量。"
         },
@@ -2269,7 +2265,7 @@
          "name": "看涨信号K线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -2302,7 +2298,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -2572,7 +2568,7 @@
          "name": "收盘价在 EMA 下方",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "空头希望反弹不超过均线，反弹到均线附近受阻是顺势做空点。"
         },
@@ -2581,7 +2577,7 @@
          "name": "反弹至 EMA 附近",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下降趋势中价格反弹到均线附近受阻,是顺势做空点。"
         },
@@ -2632,7 +2628,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "关注",
@@ -2987,7 +2983,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -3333,7 +3329,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -3577,11 +3573,11 @@
      "direction": "空",
      "byTf": {
       "日线": {
-       "verdict": "关注",
-       "verdictLabel": "关注",
+       "verdict": "观望",
+       "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要 1/2，次要 1（需 1）",
-       "primaryHit": 1,
+       "why": "首要仅 0/2",
+       "primaryHit": 0,
        "primaryNeed": 2,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -3592,7 +3588,7 @@
          "name": "窄下降通道",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "反弹极浅的下降通道,每根K线的高点都不高于前一根高点太多。"
         },
@@ -3643,7 +3639,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "可买入",
@@ -3863,8 +3859,8 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要仅 0/3",
+       "primaryHit": 0,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -3893,7 +3889,7 @@
          "name": "收盘价在 EMA 下方",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "空头希望反弹不超过均线，反弹到均线附近受阻是顺势做空点。"
         },
@@ -3935,7 +3931,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "关注",
@@ -4179,13 +4175,13 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要 2/3，次要 1（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -4203,7 +4199,7 @@
          "name": "看涨信号K线",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -4212,7 +4208,7 @@
          "name": "收盘接近最高",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -4248,7 +4244,7 @@
          "name": "连续阳线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续 N 根阳线,动量确认。课程里常以「连续三根阳线收在高位」作为强势突破的判据。"
         },
@@ -4263,7 +4259,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -4620,7 +4616,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -4894,10 +4890,10 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -4924,7 +4920,7 @@
          "name": "收盘接近最高",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -4942,7 +4938,7 @@
          "name": "看涨信号K线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -4966,7 +4962,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -5212,17 +5208,15 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "命中排除条件：单边下跌（连续趋势K线）",
-       "primaryHit": 0,
+       "why": "首要 2/3，次要 0（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 1,
-       "exclusionHit": [
-        "单边下跌（连续趋势K线）"
-       ],
+       "exclusionHit": [],
        "rows": [
         {
          "id": "wedge_bottom",
@@ -5238,7 +5232,7 @@
          "name": "看涨信号K线",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -5247,7 +5241,7 @@
          "name": "收盘接近最高",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -5283,13 +5277,13 @@
          "name": "单边下跌（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "连续多根K线收盘不断走低,空头掌控。此时抢反弹是逆势交易。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -5536,8 +5530,8 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 1,
@@ -5548,7 +5542,7 @@
          "name": "楔形顶",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "上涨末端的收敛楔形,三推后常出现反转。"
         },
@@ -5608,7 +5602,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -5852,17 +5846,15 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "命中排除条件：单边下跌（连续趋势K线）",
-       "primaryHit": 0,
+       "why": "首要 1/2，次要 1（需 1）",
+       "primaryHit": 1,
        "primaryNeed": 2,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
-       "exclusionHit": [
-        "单边下跌（连续趋势K线）"
-       ],
+       "exclusionHit": [],
        "rows": [
         {
          "id": "selling_climax",
@@ -5878,7 +5870,7 @@
          "name": "高潮后看涨反转K线",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "抛售高潮之后出现收在高位的阳线或多头反转K线——这是从「可能反转」到「确认反转」的关键一根。"
         },
@@ -5887,7 +5879,7 @@
          "name": "看涨信号K线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -5923,13 +5915,13 @@
          "name": "单边下跌（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "连续多根K线收盘不断走低,空头掌控。此时抢反弹是逆势交易。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -6248,7 +6240,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -6495,14 +6487,12 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "命中排除条件：单边下跌（连续趋势K线）",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 2,
-       "exclusionHit": [
-        "单边下跌（连续趋势K线）"
-       ],
+       "exclusionHit": [],
        "rows": [
         {
          "id": "trend_down_structure",
@@ -6527,7 +6517,7 @@
          "name": "收盘接近最高",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -6581,13 +6571,13 @@
          "name": "单边下跌（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "连续多根K线收盘不断走低,空头掌控。此时抢反弹是逆势交易。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -6891,7 +6881,7 @@
        "why": "首要仅 1/3",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 2,
        "exclusionHit": [],
        "rows": [
@@ -6936,7 +6926,7 @@
          "name": "楔形顶",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "上涨末端的收敛楔形,三推后常出现反转。"
         },
@@ -6978,7 +6968,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -7351,7 +7341,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -7679,7 +7669,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -7950,17 +7940,15 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "命中排除条件：单边下跌（连续趋势K线）",
-       "primaryHit": 0,
+       "why": "首要 2/3，次要 0（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 1,
-       "exclusionHit": [
-        "单边下跌（连续趋势K线）"
-       ],
+       "exclusionHit": [],
        "rows": [
         {
          "id": "failed_breakout_down",
@@ -7976,7 +7964,7 @@
          "name": "看涨信号K线",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -7985,7 +7973,7 @@
          "name": "收盘接近最高",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -8030,13 +8018,13 @@
          "name": "单边下跌（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "连续多根K线收盘不断走低,空头掌控。此时抢反弹是逆势交易。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -8311,9 +8299,9 @@
        "verdictLabel": "观望",
        "direction": "多",
        "why": "命中排除条件：上涨趋势结构（HH+HL）",
-       "primaryHit": 1,
+       "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [
         "上涨趋势结构（HH+HL）"
@@ -8342,7 +8330,7 @@
          "name": "看涨信号K线",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -8360,7 +8348,7 @@
          "name": "收盘接近最高",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -8402,7 +8390,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "关注",
@@ -8796,7 +8784,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -9103,10 +9091,10 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 2,
        "exclusionHit": [],
        "rows": [
@@ -9133,7 +9121,7 @@
          "name": "突破且收盘强势",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "突破K线必须收在高位——收盘接近最高、实体饱满才说明多头真金白银推上去。收盘软弱(长上影)的突破大概率失败。"
         },
@@ -9151,7 +9139,7 @@
          "name": "大阳线（实体显著）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "实体大于近 N 根K线平均实体的 K/10 倍（默认 1.5 倍）。大阳线本身就是一次突破,是最强的做多信号K线。"
         },
@@ -9184,7 +9172,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -9455,11 +9443,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要 2/3，次要 1（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -9479,7 +9467,7 @@
          "name": "收盘接近最高",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -9539,7 +9527,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -9814,9 +9802,9 @@
        "verdictLabel": "观望",
        "direction": "多",
        "why": "命中排除条件：开盘价位于昨日区间内",
-       "primaryHit": 0,
+       "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [
         "开盘价位于昨日区间内"
@@ -9836,7 +9824,7 @@
          "name": "开盘首根K线强势",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "开盘第一根K线实体饱满、收在高位。早盘的方向常常决定当天的交易基调。"
         },
@@ -9845,7 +9833,7 @@
          "name": "收盘接近最高",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -9863,7 +9851,7 @@
          "name": "大阳线（实体显著）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "实体大于近 N 根K线平均实体的 K/10 倍（默认 1.5 倍）。大阳线本身就是一次突破,是最强的做多信号K线。"
         },
@@ -9896,7 +9884,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -10259,7 +10247,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -10531,7 +10519,7 @@
      }
     }
    },
-   "fetchedAt": "2026-09-07 10:36:22"
+   "fetchedAt": "2026-09-08 05:28:19"
   },
   {
    "code": "003006",
@@ -10541,9 +10529,9 @@
    "timeframes": {
     "日线": {
      "source": "智兔",
-     "bars": 267,
-     "last": "2026-09-07",
-     "close": 15.38
+     "bars": 268,
+     "last": "2026-09-08",
+     "close": 15.9
     },
     "60分": {
      "source": "智兔",
@@ -10675,7 +10663,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -11088,7 +11076,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "关注",
@@ -11362,10 +11350,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要 2/3，次要 3（需 1）",
+       "why": "首要 2/3，次要 2（需 1）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 3,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -11428,7 +11416,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -11443,7 +11431,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "关注",
@@ -11717,10 +11705,10 @@
        "verdict": "可买入",
        "verdictLabel": "可买入",
        "direction": "多",
-       "why": "首要 3/3 全中，次要 4（需 2）",
+       "why": "首要 3/3 全中，次要 3（需 2）",
        "primaryHit": 3,
        "primaryNeed": 3,
-       "secondaryHit": 4,
+       "secondaryHit": 3,
        "secondaryNeed": 2,
        "exclusionHit": [],
        "rows": [
@@ -11756,7 +11744,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -11807,7 +11795,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -12110,10 +12098,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要 2/3，次要 3（需 1）",
+       "why": "首要 2/3，次要 2（需 1）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 3,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -12158,7 +12146,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -12182,7 +12170,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -12501,7 +12489,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "关注",
@@ -12820,7 +12808,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -13152,7 +13140,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -13433,7 +13421,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 2,
        "exclusionHit": [],
        "rows": [
@@ -13469,7 +13457,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -13511,7 +13499,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -13788,7 +13776,7 @@
        "why": "命中排除条件：单边上涨（连续趋势K线）",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [
         "单边上涨（连续趋势K线）"
@@ -13835,7 +13823,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -13859,7 +13847,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -14175,7 +14163,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -14473,7 +14461,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -14724,10 +14712,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要 2/3，次要 3（需 1）",
+       "why": "首要 2/3，次要 2（需 1）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 3,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -14772,7 +14760,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -14805,7 +14793,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -15082,9 +15070,9 @@
        "verdictLabel": "观望",
        "direction": "空",
        "why": "命中排除条件：单边上涨（连续趋势K线）",
-       "primaryHit": 1,
+       "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [
         "单边上涨（连续趋势K线）"
@@ -15095,7 +15083,7 @@
          "name": "双顶",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "两个高点大致在同一水平,第二顶常略微突破形成多头陷阱后失败。"
         },
@@ -15131,7 +15119,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -15164,7 +15152,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -15442,10 +15430,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要 2/3，次要 3（需 1）",
+       "why": "首要 2/3，次要 2（需 1）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 3,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -15481,7 +15469,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -15514,7 +15502,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -15763,10 +15751,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要 2/3，次要 2（需 1）",
+       "why": "首要 2/3，次要 1（需 1）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 2,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -15802,7 +15790,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -15835,7 +15823,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -16083,9 +16071,9 @@
        "verdictLabel": "观望",
        "direction": "空",
        "why": "命中排除条件：单边上涨（连续趋势K线）",
-       "primaryHit": 1,
+       "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [
         "单边上涨（连续趋势K线）"
@@ -16096,7 +16084,7 @@
          "name": "楔形顶",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "上涨末端的收敛楔形,三推后常出现反转。"
         },
@@ -16123,7 +16111,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -16156,7 +16144,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -16407,10 +16395,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要 1/2，次要 2（需 1）",
+       "why": "首要 1/2，次要 1（需 1）",
        "primaryHit": 1,
        "primaryNeed": 2,
-       "secondaryHit": 2,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -16455,7 +16443,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -16479,7 +16467,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "关注",
@@ -16729,7 +16717,7 @@
        "why": "命中排除条件：单边上涨（连续趋势K线）",
        "primaryHit": 0,
        "primaryNeed": 2,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [
         "单边上涨（连续趋势K线）"
@@ -16776,7 +16764,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -16800,7 +16788,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -17051,10 +17039,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要 2/3，次要 2（需 2）",
+       "why": "首要 2/3，次要 1（需 2）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 2,
+       "secondaryHit": 1,
        "secondaryNeed": 2,
        "exclusionHit": [],
        "rows": [
@@ -17126,7 +17114,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -17141,7 +17129,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -17445,7 +17433,7 @@
        "why": "命中排除条件：单边上涨（连续趋势K线）",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 3,
+       "secondaryHit": 0,
        "secondaryNeed": 2,
        "exclusionHit": [
         "单边上涨（连续趋势K线）"
@@ -17483,7 +17471,7 @@
          "name": "双顶",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "两个高点大致在同一水平,第二顶常略微突破形成多头陷阱后失败。"
         },
@@ -17492,7 +17480,7 @@
          "name": "楔形顶",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "上涨末端的收敛楔形,三推后常出现反转。"
         },
@@ -17519,7 +17507,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -17534,7 +17522,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -17842,7 +17830,7 @@
        "why": "命中排除条件：连续阳线",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [
         "连续阳线"
@@ -17889,7 +17877,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -17913,7 +17901,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -18163,7 +18151,7 @@
        "why": "命中排除条件：单边上涨（连续趋势K线）",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [
         "单边上涨（连续趋势K线）"
@@ -18201,7 +18189,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -18243,7 +18231,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -18521,10 +18509,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要 2/3，次要 2（需 1）",
+       "why": "首要 2/3，次要 1（需 1）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 2,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -18560,7 +18548,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -18602,7 +18590,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -18877,7 +18865,7 @@
        "verdictLabel": "观望",
        "direction": "多",
        "why": "命中排除条件：上涨趋势结构（HH+HL）",
-       "primaryHit": 2,
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -18890,7 +18878,7 @@
          "name": "处于震荡区间",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "近 N 根K线的高点没有明显抬高、低点没有明显下移——市场在横盘。区间里要改用高抛低吸,趋势策略会连续被打止损。"
         },
@@ -18968,7 +18956,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -19273,11 +19261,11 @@
      "direction": "空",
      "byTf": {
       "日线": {
-       "verdict": "关注",
-       "verdictLabel": "关注",
+       "verdict": "观望",
+       "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要 2/3，次要 0（需 1）",
-       "primaryHit": 2,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 1,
@@ -19288,7 +19276,7 @@
          "name": "处于震荡区间",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "近 N 根K线的高点没有明显抬高、低点没有明显下移——市场在横盘。区间里要改用高抛低吸,趋势策略会连续被打止损。"
         },
@@ -19366,7 +19354,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -19666,11 +19654,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "可买入",
-       "verdictLabel": "可买入",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要 3/3 全中，次要 2（需 2）",
-       "primaryHit": 3,
+       "why": "首要 2/3，次要 2（需 2）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 2,
        "secondaryNeed": 2,
@@ -19681,7 +19669,7 @@
          "name": "处于震荡区间",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "近 N 根K线的高点没有明显抬高、低点没有明显下移——市场在横盘。区间里要改用高抛低吸,趋势策略会连续被打止损。"
         },
@@ -19708,7 +19696,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -19726,7 +19714,7 @@
          "name": "向上跳空缺口",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "缺口是最强的突破形式之一。测量缺口出现在趋势运行 10-20 根K线后,往往意味着后面还有等距的测量移动。"
         },
@@ -19750,7 +19738,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -20024,10 +20012,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要 2/3，次要 1（需 1）",
-       "primaryHit": 2,
+       "why": "首要 3/3，次要 0（需 1）",
+       "primaryHit": 3,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -20036,7 +20024,7 @@
          "name": "向上跳空缺口",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "缺口是最强的突破形式之一。测量缺口出现在趋势运行 10-20 根K线后,往往意味着后面还有等距的测量移动。"
         },
@@ -20072,7 +20060,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -20105,7 +20093,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "关注",
@@ -20376,24 +20364,22 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "可买入",
+       "verdictLabel": "可买入",
        "direction": "多",
-       "why": "命中排除条件：开盘价位于昨日区间内",
-       "primaryHit": 2,
+       "why": "首要 3/3 全中，次要 2（需 1）",
+       "primaryHit": 3,
        "primaryNeed": 3,
-       "secondaryHit": 3,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
-       "exclusionHit": [
-        "开盘价位于昨日区间内"
-       ],
+       "exclusionHit": [],
        "rows": [
         {
          "id": "open_gap_up",
          "name": "高开",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "开盘价高于前一日最高价。早盘的开盘缺口常常不会被回补,是当天方向的重要线索。"
         },
@@ -20420,7 +20406,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -20447,7 +20433,7 @@
          "name": "开盘价位于昨日区间内",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "开盘既没有高于昨高也没有低于昨低,属于常规开盘,早盘方向需再观察。"
         },
@@ -20462,7 +20448,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -20742,14 +20728,12 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "命中排除条件：开盘价位于昨日区间内",
+       "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
-       "exclusionHit": [
-        "开盘价位于昨日区间内"
-       ],
+       "exclusionHit": [],
        "rows": [
         {
          "id": "open_gap_down",
@@ -20783,7 +20767,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -20810,7 +20794,7 @@
          "name": "开盘价位于昨日区间内",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "开盘既没有高于昨高也没有低于昨低,属于常规开盘,早盘方向需再观察。"
         },
@@ -20825,7 +20809,7 @@
         }
        ],
        "errors": [],
-       "bars": 267
+       "bars": 268
       },
       "60分": {
        "verdict": "观望",
@@ -21097,18 +21081,18 @@
      }
     }
    },
-   "fetchedAt": "2026-09-07 10:36:32"
+   "fetchedAt": "2026-09-08 05:28:28"
   },
   {
    "code": "600192",
    "name": "长城电工",
    "price": 7.16,
-   "changePct": -1.513067,
+   "changePct": 0,
    "timeframes": {
     "日线": {
      "source": "同花顺",
-     "bars": 425,
-     "last": "2026-09-06",
+     "bars": 426,
+     "last": "2026-09-07",
      "close": 7.16
     },
     "60分": {
@@ -21137,17 +21121,15 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "命中排除条件：深回调（趋势存疑）",
+       "why": "首要 2/3，次要 3（需 1）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 2,
+       "secondaryHit": 3,
        "secondaryNeed": 1,
-       "exclusionHit": [
-        "深回调（趋势存疑）"
-       ],
+       "exclusionHit": [],
        "rows": [
         {
          "id": "trend_up_structure",
@@ -21190,7 +21172,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -21226,7 +21208,7 @@
          "name": "深回调（趋势存疑）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "回调跌破前一波的 50% 甚至回到起点,趋势延续概率降到接近 50%,市场更可能转入震荡区间。通常作为排除或减仓条件。"
         },
@@ -21241,7 +21223,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -21577,10 +21559,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要 2/3，次要 1（需 1）",
+       "why": "首要 2/3，次要 2（需 1）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -21625,7 +21607,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -21634,7 +21616,7 @@
          "name": "浅回调（趋势强劲）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "回调幅度不到前一波的 50%,说明多头急切,趋势强劲。强趋势中浅回调就是买点,等深回调会错过。"
         },
@@ -21643,7 +21625,7 @@
          "name": "回调至 50% 回撤位",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "一波上涨后回调 50% 是最常见的支撑位,多头在此挂限价单。回调超过 50% 后趋势延续的概率开始下降。"
         },
@@ -21658,7 +21640,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -21935,7 +21917,7 @@
        "why": "首要仅 1/3",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -21980,7 +21962,7 @@
          "name": "浅回调（趋势强劲）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "回调幅度不到前一波的 50%,说明多头急切,趋势强劲。强趋势中浅回调就是买点,等深回调会错过。"
         },
@@ -22013,7 +21995,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -22377,7 +22359,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -22754,7 +22736,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -23004,7 +22986,7 @@
        "why": "首要仅 0/2",
        "primaryHit": 0,
        "primaryNeed": 2,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -23058,7 +23040,7 @@
          "name": "浅回调（趋势强劲）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "回调幅度不到前一波的 50%,说明多头急切,趋势强劲。强趋势中浅回调就是买点,等深回调会错过。"
         },
@@ -23073,7 +23055,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -23323,7 +23305,7 @@
        "why": "首要仅 1/3",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -23368,7 +23350,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -23392,7 +23374,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -23724,7 +23706,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "关注",
@@ -24079,7 +24061,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -24425,7 +24407,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -24735,7 +24717,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "关注",
@@ -25027,7 +25009,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -25277,7 +25259,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -25331,7 +25313,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -25355,7 +25337,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -25636,7 +25618,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -25699,7 +25681,7 @@
          "name": "连续阴线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续 N 根阴线收在低位,空头动量的确认。"
         },
@@ -25714,7 +25696,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -26060,7 +26042,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -26314,7 +26296,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -26359,7 +26341,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -26383,7 +26365,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -26702,7 +26684,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -26952,7 +26934,7 @@
        "why": "首要仅 0/2",
        "primaryHit": 0,
        "primaryNeed": 2,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -27006,7 +26988,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -27021,7 +27003,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -27340,7 +27322,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -27677,7 +27659,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -28068,7 +28050,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -28441,7 +28423,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -28769,7 +28751,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -29046,7 +29028,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -29100,7 +29082,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -29124,7 +29106,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -29401,7 +29383,7 @@
        "why": "首要仅 1/3",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -29437,7 +29419,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -29488,7 +29470,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -29883,7 +29865,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -30270,7 +30252,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -30625,7 +30607,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -30982,7 +30964,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -31345,7 +31327,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -31617,19 +31599,19 @@
      }
     }
    },
-   "fetchedAt": "2026-09-07 10:36:41"
+   "fetchedAt": "2026-09-08 05:28:36"
   },
   {
    "code": "603376",
    "name": "大明电子",
-   "price": 27.88,
-   "changePct": -0.214746,
+   "price": 27.93,
+   "changePct": 0.17934,
    "timeframes": {
     "日线": {
      "source": "同花顺",
-     "bars": 205,
-     "last": "2026-09-06",
-     "close": 27.88
+     "bars": 206,
+     "last": "2026-09-07",
+     "close": 27.94
     },
     "60分": {
      "source": "智兔",
@@ -31661,9 +31643,9 @@
        "verdictLabel": "观望",
        "direction": "多",
        "why": "命中排除条件：深回调（趋势存疑）",
-       "primaryHit": 1,
+       "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 4,
        "secondaryNeed": 1,
        "exclusionHit": [
         "深回调（趋势存疑）"
@@ -31674,7 +31656,7 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         },
@@ -31710,7 +31692,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -31719,7 +31701,7 @@
          "name": "收盘接近最高",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -31737,7 +31719,7 @@
          "name": "缩量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量低于均量的 K/10（默认 0.8 倍）,市场观望。缩量回调比放量回调更像健康的趋势休整。"
         },
@@ -31761,7 +31743,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -32094,13 +32076,13 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "关注",
-       "verdictLabel": "关注",
+       "verdict": "可买入",
+       "verdictLabel": "可买入",
        "direction": "多",
-       "why": "首要 2/3，次要 1（需 1）",
-       "primaryHit": 2,
+       "why": "首要 3/3 全中，次要 2（需 1）",
+       "primaryHit": 3,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -32109,7 +32091,7 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         },
@@ -32145,7 +32127,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -32178,7 +32160,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -32452,10 +32434,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要 2/3，次要 0（需 1）",
+       "why": "首要 2/3，次要 1（需 1）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -32509,7 +32491,7 @@
          "name": "收盘接近最高",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -32533,7 +32515,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -32807,8 +32789,8 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 2,
        "secondaryNeed": 2,
@@ -32828,7 +32810,7 @@
          "name": "突破且收盘强势",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "突破K线必须收在高位——收盘接近最高、实体饱满才说明多头真金白银推上去。收盘软弱(长上影)的突破大概率失败。"
         },
@@ -32897,7 +32879,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -33202,10 +33184,10 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -33223,7 +33205,7 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         },
@@ -33241,7 +33223,7 @@
          "name": "收盘接近最高",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -33274,7 +33256,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -33518,11 +33500,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 0/2",
-       "primaryHit": 0,
+       "why": "首要 1/2，次要 1（需 1）",
+       "primaryHit": 1,
        "primaryNeed": 2,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -33542,7 +33524,7 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         },
@@ -33593,7 +33575,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -33837,13 +33819,13 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要 2/3，次要 2（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -33861,7 +33843,7 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         },
@@ -33888,7 +33870,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -33912,7 +33894,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -34244,7 +34226,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "关注",
@@ -34521,7 +34503,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 2,
        "exclusionHit": [],
        "rows": [
@@ -34575,7 +34557,7 @@
          "name": "连续阴线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "连续 N 根阴线收在低位,空头动量的确认。"
         },
@@ -34599,7 +34581,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -34945,7 +34927,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -35255,7 +35237,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -35547,7 +35529,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -35794,10 +35776,10 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -35824,7 +35806,7 @@
          "name": "收盘接近最高",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -35851,7 +35833,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -35875,7 +35857,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -36156,7 +36138,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -36219,7 +36201,7 @@
          "name": "连续阴线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "连续 N 根阴线收在低位,空头动量的确认。"
         },
@@ -36234,7 +36216,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -36508,8 +36490,8 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -36538,7 +36520,7 @@
          "name": "收盘接近最高",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -36580,7 +36562,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -36831,10 +36813,10 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -36861,7 +36843,7 @@
          "name": "收盘接近最高",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -36879,7 +36861,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -36903,7 +36885,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -37222,7 +37204,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -37466,13 +37448,13 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 0/2",
-       "primaryHit": 0,
+       "why": "首要 1/2，次要 1（需 1）",
+       "primaryHit": 1,
        "primaryNeed": 2,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -37490,7 +37472,7 @@
          "name": "高潮后看涨反转K线",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "抛售高潮之后出现收在高位的阳线或多头反转K线——这是从「可能反转」到「确认反转」的关键一根。"
         },
@@ -37526,7 +37508,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -37541,7 +37523,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "关注",
@@ -37860,7 +37842,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -38107,8 +38089,8 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 2,
@@ -38137,7 +38119,7 @@
          "name": "收盘接近最高",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -38197,7 +38179,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -38501,7 +38483,7 @@
        "why": "首要仅 1/3",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 2,
        "exclusionHit": [],
        "rows": [
@@ -38564,7 +38546,7 @@
          "name": "连续阴线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "连续 N 根阴线收在低位,空头动量的确认。"
         },
@@ -38588,7 +38570,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -38961,7 +38943,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -39289,7 +39271,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -39563,10 +39545,10 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -39593,7 +39575,7 @@
          "name": "收盘接近最高",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -39620,7 +39602,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -39644,7 +39626,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -39918,12 +39900,14 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/3",
+       "why": "命中排除条件：上涨趋势结构（HH+HL）",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 3,
        "secondaryNeed": 1,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "上涨趋势结构（HH+HL）"
+       ],
        "rows": [
         {
          "id": "in_trading_range",
@@ -39957,7 +39941,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -39966,7 +39950,7 @@
          "name": "收盘接近最高",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -39975,7 +39959,7 @@
          "name": "缩量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量低于均量的 K/10（默认 0.8 倍）,市场观望。缩量回调比放量回调更像健康的趋势休整。"
         },
@@ -40002,13 +39986,13 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -40316,7 +40300,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -40370,7 +40354,7 @@
          "name": "缩量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量低于均量的 K/10（默认 0.8 倍）,市场观望。缩量回调比放量回调更像健康的趋势休整。"
         },
@@ -40403,7 +40387,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -40709,8 +40693,8 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 2,
@@ -40739,7 +40723,7 @@
          "name": "突破且收盘强势",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "突破K线必须收在高位——收盘接近最高、实体饱满才说明多头真金白银推上去。收盘软弱(长上影)的突破大概率失败。"
         },
@@ -40790,7 +40774,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -41061,11 +41045,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要 2/3，次要 1（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -41085,7 +41069,7 @@
          "name": "收盘接近最高",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -41094,7 +41078,7 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         },
@@ -41145,7 +41129,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -41420,9 +41404,9 @@
        "verdictLabel": "观望",
        "direction": "多",
        "why": "命中排除条件：开盘价位于昨日区间内",
-       "primaryHit": 0,
+       "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [
         "开盘价位于昨日区间内"
@@ -41451,7 +41435,7 @@
          "name": "收盘接近最高",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的上 R%,说明买盘在收盘前仍掌控。"
         },
@@ -41478,7 +41462,7 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         },
@@ -41502,7 +41486,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -41865,7 +41849,7 @@
         }
        ],
        "errors": [],
-       "bars": 205
+       "bars": 206
       },
       "60分": {
        "verdict": "观望",
@@ -42137,19 +42121,19 @@
      }
     }
    },
-   "fetchedAt": "2026-09-07 10:36:50"
+   "fetchedAt": "2026-09-08 05:28:43"
   },
   {
    "code": "600869",
    "name": "远东股份",
-   "price": 20.88,
-   "changePct": -1.509434,
+   "price": 22.76,
+   "changePct": 9.003831,
    "timeframes": {
     "日线": {
      "source": "同花顺",
-     "bars": 425,
-     "last": "2026-09-06",
-     "close": 20.88
+     "bars": 426,
+     "last": "2026-09-07",
+     "close": 22.78
     },
     "60分": {
      "source": "智兔",
@@ -42181,7 +42165,7 @@
        "verdictLabel": "观望",
        "direction": "多",
        "why": "命中排除条件：深回调（趋势存疑）",
-       "primaryHit": 1,
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 3,
        "secondaryNeed": 1,
@@ -42194,7 +42178,7 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         },
@@ -42221,7 +42205,7 @@
          "name": "看涨信号K线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -42230,7 +42214,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -42281,7 +42265,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "关注",
@@ -42610,11 +42594,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "关注",
-       "verdictLabel": "关注",
+       "verdict": "可买入",
+       "verdictLabel": "可买入",
        "direction": "多",
-       "why": "首要 2/3，次要 1（需 1）",
-       "primaryHit": 2,
+       "why": "首要 3/3 全中，次要 1（需 1）",
+       "primaryHit": 3,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -42625,7 +42609,7 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         },
@@ -42652,7 +42636,7 @@
          "name": "看涨信号K线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -42661,7 +42645,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -42694,7 +42678,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "可买入",
@@ -42968,10 +42952,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要 2/3，次要 1（需 1）",
+       "why": "首要 2/3，次要 2（需 1）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -42980,7 +42964,7 @@
          "name": "突破后首次回调",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "强劲突破之后的第一次回调最可能只是趋势中的暂停,是顺势入场的最佳窗口。第二次、第三次回调的成功率依次下降。"
         },
@@ -42989,7 +42973,7 @@
          "name": "突破前 N 根K线高点",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "突破是一根或数根趋势K线,冲过某个支撑或阻力。先过前一根K线高点,再过前期高点,最后过趋势线和均线。"
         },
@@ -43007,7 +42991,7 @@
          "name": "看涨信号K线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -43049,7 +43033,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "关注",
@@ -43320,11 +43304,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "可买入",
+       "verdictLabel": "可买入",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要 3/3 全中，次要 2（需 2）",
+       "primaryHit": 3,
        "primaryNeed": 3,
        "secondaryHit": 2,
        "secondaryNeed": 2,
@@ -43335,7 +43319,7 @@
          "name": "突破前 N 根K线高点",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "突破是一根或数根趋势K线,冲过某个支撑或阻力。先过前一根K线高点,再过前期高点,最后过趋势线和均线。"
         },
@@ -43344,7 +43328,7 @@
          "name": "突破且收盘强势",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "突破K线必须收在高位——收盘接近最高、实体饱满才说明多头真金白银推上去。收盘软弱(长上影)的突破大概率失败。"
         },
@@ -43353,7 +43337,7 @@
          "name": "大阳线（实体显著）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "实体大于近 N 根K线平均实体的 K/10 倍（默认 1.5 倍）。大阳线本身就是一次突破,是最强的做多信号K线。"
         },
@@ -43413,7 +43397,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -43711,11 +43695,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要 2/3，次要 2（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 2,
        "secondaryNeed": 1,
@@ -43735,7 +43719,7 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         },
@@ -43744,7 +43728,7 @@
          "name": "突破前 N 根K线高点",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "突破是一根或数根趋势K线,冲过某个支撑或阻力。先过前一根K线高点,再过前期高点,最后过趋势线和均线。"
         },
@@ -43786,7 +43770,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -44030,13 +44014,13 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "可买入",
+       "verdictLabel": "可买入",
        "direction": "多",
-       "why": "首要仅 0/2",
-       "primaryHit": 0,
+       "why": "首要 2/2 全中，次要 2（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 2,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -44045,7 +44029,7 @@
          "name": "窄上涨通道",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "回调极浅、K线重叠度高,每根K线的低点都不低于前一根低点太多。窄通道是强趋势的表现,在通道下沿买入、用较小止损。"
         },
@@ -44054,7 +44038,7 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         },
@@ -44072,7 +44056,7 @@
          "name": "看涨信号K线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -44105,7 +44089,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "关注",
@@ -44349,11 +44333,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要 2/3，次要 1（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -44373,7 +44357,7 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         },
@@ -44391,7 +44375,7 @@
          "name": "看涨信号K线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -44400,7 +44384,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -44424,7 +44408,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "关注",
@@ -44671,12 +44655,14 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
+       "why": "命中排除条件：单边上涨（连续趋势K线）",
        "primaryHit": 0,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 1,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "单边上涨（连续趋势K线）"
+       ],
        "rows": [
         {
          "id": "trend_down_structure",
@@ -44746,13 +44732,13 @@
          "name": "单边上涨（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续多根K线收盘价不断抬高、少有回调,说明多头完全掌控。单边行情中回调极浅,等待深度回调会踏空。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -45107,7 +45093,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -45381,12 +45367,14 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
+       "why": "命中排除条件：单边上涨（连续趋势K线）",
        "primaryHit": 0,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 1,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "单边上涨（连续趋势K线）"
+       ],
        "rows": [
         {
          "id": "bear_flag",
@@ -45447,13 +45435,13 @@
          "name": "单边上涨（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续多根K线收盘价不断抬高、少有回调,说明多头完全掌控。单边行情中回调极浅,等待深度回调会踏空。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -45700,12 +45688,14 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/2",
+       "why": "命中排除条件：单边上涨（连续趋势K线）",
        "primaryHit": 0,
        "primaryNeed": 2,
        "secondaryHit": 0,
        "secondaryNeed": 1,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "单边上涨（连续趋势K线）"
+       ],
        "rows": [
         {
          "id": "tight_channel_down",
@@ -45757,13 +45747,13 @@
          "name": "单边上涨（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续多根K线收盘价不断抬高、少有回调,说明多头完全掌控。单边行情中回调极浅,等待深度回调会踏空。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -45983,12 +45973,14 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 1/3",
+       "why": "命中排除条件：单边上涨（连续趋势K线）",
        "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 1,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "单边上涨（连续趋势K线）"
+       ],
        "rows": [
         {
          "id": "trend_down_structure",
@@ -46049,13 +46041,13 @@
          "name": "单边上涨（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续多根K线收盘价不断抬高、少有回调,说明多头完全掌控。单边行情中回调极浅,等待深度回调会踏空。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -46299,11 +46291,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要 2/3，次要 1（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -46323,7 +46315,7 @@
          "name": "看涨信号K线",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -46341,7 +46333,7 @@
          "name": "突破前 N 根K线高点",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "突破是一根或数根趋势K线,冲过某个支撑或阻力。先过前一根K线高点,再过前期高点,最后过趋势线和均线。"
         },
@@ -46359,7 +46351,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -46383,7 +46375,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -46657,12 +46649,14 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
+       "why": "命中排除条件：单边上涨（连续趋势K线）",
        "primaryHit": 0,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 1,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "单边上涨（连续趋势K线）"
+       ],
        "rows": [
         {
          "id": "double_top",
@@ -46732,13 +46726,13 @@
          "name": "单边上涨（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续多根K线收盘价不断抬高、少有回调,说明多头完全掌控。单边行情中回调极浅,等待深度回调会踏空。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -47009,13 +47003,13 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要 2/3，次要 2（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -47033,7 +47027,7 @@
          "name": "突破前 N 根K线高点",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "突破是一根或数根趋势K线,冲过某个支撑或阻力。先过前一根K线高点,再过前期高点,最后过趋势线和均线。"
         },
@@ -47060,7 +47054,7 @@
          "name": "看涨信号K线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -47084,7 +47078,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -47328,11 +47322,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要 2/3，次要 1（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -47352,7 +47346,7 @@
          "name": "看涨信号K线",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -47379,7 +47373,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -47388,7 +47382,7 @@
          "name": "突破前 N 根K线高点",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "突破是一根或数根趋势K线,冲过某个支撑或阻力。先过前一根K线高点,再过前期高点,最后过趋势线和均线。"
         },
@@ -47403,7 +47397,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -47650,19 +47644,21 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "命中排除条件：单边上涨（连续趋势K线）",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 1,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "单边上涨（连续趋势K线）"
+       ],
        "rows": [
         {
          "id": "wedge_top",
          "name": "楔形顶",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "上涨末端的收敛楔形,三推后常出现反转。"
         },
@@ -47716,13 +47712,13 @@
          "name": "单边上涨（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续多根K线收盘价不断抬高、少有回调,说明多头完全掌控。单边行情中回调极浅,等待深度回调会踏空。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -47966,11 +47962,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 0/2",
-       "primaryHit": 0,
+       "why": "首要 1/2，次要 1（需 1）",
+       "primaryHit": 1,
        "primaryNeed": 2,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -47990,7 +47986,7 @@
          "name": "高潮后看涨反转K线",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "抛售高潮之后出现收在高位的阳线或多头反转K线——这是从「可能反转」到「确认反转」的关键一根。"
         },
@@ -47999,7 +47995,7 @@
          "name": "看涨信号K线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -48026,7 +48022,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -48041,7 +48037,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -48288,12 +48284,14 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/2",
+       "why": "命中排除条件：单边上涨（连续趋势K线）",
        "primaryHit": 0,
        "primaryNeed": 2,
        "secondaryHit": 0,
        "secondaryNeed": 1,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "单边上涨（连续趋势K线）"
+       ],
        "rows": [
         {
          "id": "buying_climax",
@@ -48354,13 +48352,13 @@
          "name": "单边上涨（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续多根K线收盘价不断抬高、少有回调,说明多头完全掌控。单边行情中回调极浅,等待深度回调会踏空。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -48604,11 +48602,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要 2/3，次要 0（需 2）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 2,
@@ -48628,7 +48626,7 @@
          "name": "突破前 N 根K线高点",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "突破是一根或数根趋势K线,冲过某个支撑或阻力。先过前一根K线高点,再过前期高点,最后过趋势线和均线。"
         },
@@ -48697,7 +48695,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -48998,19 +48996,21 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "命中排除条件：单边上涨（连续趋势K线）",
+       "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 2,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "单边上涨（连续趋势K线）"
+       ],
        "rows": [
         {
          "id": "trend_up_structure",
          "name": "上涨趋势结构（HH+HL）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         },
@@ -49046,7 +49046,7 @@
          "name": "楔形顶",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "上涨末端的收敛楔形,三推后常出现反转。"
         },
@@ -49082,13 +49082,13 @@
          "name": "单边上涨（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续多根K线收盘价不断抬高、少有回调,说明多头完全掌控。单边行情中回调极浅,等待深度回调会踏空。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -49461,7 +49461,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -49708,12 +49708,14 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
+       "why": "命中排除条件：单边上涨（连续趋势K线）",
        "primaryHit": 0,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 1,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "单边上涨（连续趋势K线）"
+       ],
        "rows": [
         {
          "id": "failed_breakout_up",
@@ -49783,13 +49785,13 @@
          "name": "单边上涨（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续多根K线收盘价不断抬高、少有回调,说明多头完全掌控。单边行情中回调极浅,等待深度回调会踏空。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -50060,13 +50062,13 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要 2/3，次要 1（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 2,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -50084,7 +50086,7 @@
          "name": "看涨信号K线",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -50120,7 +50122,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -50144,7 +50146,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -50418,12 +50420,14 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "命中排除条件：上涨趋势结构（HH+HL）",
+       "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 2,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "上涨趋势结构（HH+HL）"
+       ],
        "rows": [
         {
          "id": "in_trading_range",
@@ -50448,7 +50452,7 @@
          "name": "看涨信号K线",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "信号K线是提示入场的那一根,入场K线是真正进场的那根,两者常常不是同一根。好的看涨信号K线:阳线、收盘接近最高、实体饱满。"
         },
@@ -50457,7 +50461,7 @@
          "name": "看涨反转K线（长下影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "下影线长、收盘接近最高——下方有买盘把价格推回。在有利背景下,最好的信号K线就是这种反转K线。"
         },
@@ -50502,13 +50506,13 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -50901,7 +50905,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -51201,13 +51205,13 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要 3/3，次要 1（需 2）",
+       "primaryHit": 3,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 2,
        "exclusionHit": [],
        "rows": [
@@ -51225,7 +51229,7 @@
          "name": "突破前 N 根K线高点",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "突破是一根或数根趋势K线,冲过某个支撑或阻力。先过前一根K线高点,再过前期高点,最后过趋势线和均线。"
         },
@@ -51234,7 +51238,7 @@
          "name": "突破且收盘强势",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "突破K线必须收在高位——收盘接近最高、实体饱满才说明多头真金白银推上去。收盘软弱(长上影)的突破大概率失败。"
         },
@@ -51252,7 +51256,7 @@
          "name": "大阳线（实体显著）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "实体大于近 N 根K线平均实体的 K/10 倍（默认 1.5 倍）。大阳线本身就是一次突破,是最强的做多信号K线。"
         },
@@ -51285,7 +51289,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -51556,11 +51560,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要 2/3，次要 0（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 1,
@@ -51589,7 +51593,7 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         },
@@ -51640,7 +51644,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -51915,9 +51919,9 @@
        "verdictLabel": "观望",
        "direction": "多",
        "why": "命中排除条件：开盘价位于昨日区间内",
-       "primaryHit": 1,
+       "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [
         "开盘价位于昨日区间内"
@@ -51937,7 +51941,7 @@
          "name": "开盘首根K线强势",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "开盘第一根K线实体饱满、收在高位。早盘的方向常常决定当天的交易基调。"
         },
@@ -51964,7 +51968,7 @@
          "name": "大阳线（实体显著）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "实体大于近 N 根K线平均实体的 K/10 倍（默认 1.5 倍）。大阳线本身就是一次突破,是最强的做多信号K线。"
         },
@@ -51973,7 +51977,7 @@
          "name": "上涨趋势结构（HH+HL）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "近 N 根K线的低点高于前 N 根K线的低点，且高点也抬高——这是课程对上涨趋势的定义。趋势是一切的前提，逆势做多的胜率会显著下降。"
         },
@@ -51997,7 +52001,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -52360,7 +52364,7 @@
         }
        ],
        "errors": [],
-       "bars": 425
+       "bars": 426
       },
       "60分": {
        "verdict": "观望",
@@ -52632,16 +52636,32 @@
      }
     }
    },
-   "fetchedAt": "2026-09-07 10:36:59"
+   "fetchedAt": "2026-09-08 05:28:53"
   }
  ],
  "summaries": [
   {
    "code": "600594",
    "name": "益佰制药",
-   "price": 3.72,
-   "changePct": -0.268097,
+   "price": 3.9,
+   "changePct": 4.83871,
    "buySignals": [
+    {
+     "model": "两腿回调做多（TBTL）",
+     "modelId": "m_two_leg_long",
+     "tf": "日线",
+     "why": "首要 3/3 全中，次要 1（需 1）",
+     "direction": "多",
+     "label": "可买入"
+    },
+    {
+     "model": "宽上涨通道波段做多",
+     "modelId": "m_wide_channel_long",
+     "tf": "日线",
+     "why": "首要 3/3 全中，次要 2（需 1）",
+     "direction": "多",
+     "label": "可买入"
+    },
     {
      "model": "窄下降通道逢高做空",
      "modelId": "m_tight_channel_short",
@@ -52651,7 +52671,7 @@
      "label": "可卖出（做空信号）"
     }
    ],
-   "fetchedAt": "2026-09-07 10:36:22"
+   "fetchedAt": "2026-09-08 05:28:19"
   },
   {
    "code": "003006",
@@ -52679,7 +52699,7 @@
      "model": "强势突破跟随做多",
      "modelId": "m_breakout_follow_long",
      "tf": "日线",
-     "why": "首要 3/3 全中，次要 4（需 2）",
+     "why": "首要 3/3 全中，次要 3（需 2）",
      "direction": "多",
      "label": "可买入"
     },
@@ -52700,21 +52720,21 @@
      "label": "可买入"
     },
     {
-     "model": "区间向上突破跟随",
-     "modelId": "m_range_breakout_long",
+     "model": "早盘高开跟随做多",
+     "modelId": "m_open_gap_long",
      "tf": "日线",
-     "why": "首要 3/3 全中，次要 2（需 2）",
+     "why": "首要 3/3 全中，次要 2（需 1）",
      "direction": "多",
      "label": "可买入"
     }
    ],
-   "fetchedAt": "2026-09-07 10:36:32"
+   "fetchedAt": "2026-09-08 05:28:28"
   },
   {
    "code": "600192",
    "name": "长城电工",
    "price": 7.16,
-   "changePct": -1.513067,
+   "changePct": 0,
    "buySignals": [
     {
      "model": "下降趋势反弹做空",
@@ -52733,14 +52753,22 @@
      "label": "可卖出（做空信号）"
     }
    ],
-   "fetchedAt": "2026-09-07 10:36:41"
+   "fetchedAt": "2026-09-08 05:28:36"
   },
   {
    "code": "603376",
    "name": "大明电子",
-   "price": 27.88,
-   "changePct": -0.214746,
+   "price": 27.93,
+   "changePct": 0.17934,
    "buySignals": [
+    {
+     "model": "两腿回调做多（TBTL）",
+     "modelId": "m_two_leg_long",
+     "tf": "日线",
+     "why": "首要 3/3 全中，次要 2（需 1）",
+     "direction": "多",
+     "label": "可买入"
+    },
     {
      "model": "下降趋势反弹做空",
      "modelId": "m_rally_short",
@@ -52750,14 +52778,22 @@
      "label": "可卖出（做空信号）"
     }
    ],
-   "fetchedAt": "2026-09-07 10:36:50"
+   "fetchedAt": "2026-09-08 05:28:43"
   },
   {
    "code": "600869",
    "name": "远东股份",
-   "price": 20.88,
-   "changePct": -1.509434,
+   "price": 22.76,
+   "changePct": 9.003831,
    "buySignals": [
+    {
+     "model": "两腿回调做多（TBTL）",
+     "modelId": "m_two_leg_long",
+     "tf": "日线",
+     "why": "首要 3/3 全中，次要 1（需 1）",
+     "direction": "多",
+     "label": "可买入"
+    },
     {
      "model": "两腿回调做多（TBTL）",
      "modelId": "m_two_leg_long",
@@ -52765,9 +52801,25 @@
      "why": "首要 3/3 全中，次要 2（需 1）",
      "direction": "多",
      "label": "可买入"
+    },
+    {
+     "model": "强势突破跟随做多",
+     "modelId": "m_breakout_follow_long",
+     "tf": "日线",
+     "why": "首要 3/3 全中，次要 2（需 2）",
+     "direction": "多",
+     "label": "可买入"
+    },
+    {
+     "model": "窄上涨通道逢低做多",
+     "modelId": "m_tight_channel_long",
+     "tf": "日线",
+     "why": "首要 2/2 全中，次要 2（需 1）",
+     "direction": "多",
+     "label": "可买入"
     }
    ],
-   "fetchedAt": "2026-09-07 10:36:59"
+   "fetchedAt": "2026-09-08 05:28:53"
   }
  ]
 }
