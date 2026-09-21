@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-21 05:42:12",
+ "generatedAt": "2026-09-21 06:29:20",
  "tfs": [
   "日线",
   "60分",
@@ -11,14 +11,14 @@
   {
    "code": "600594",
    "name": "益佰制药",
-   "price": 3.78,
-   "changePct": 6.179775,
+   "price": 3.82,
+   "changePct": 7.303371,
    "timeframes": {
     "日线": {
      "source": "同花顺",
      "bars": 425,
      "last": "2026-09-20",
-     "close": 3.78
+     "close": 3.82
     },
     "60分": {
      "source": "智兔",
@@ -2223,11 +2223,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "关注",
-       "verdictLabel": "关注",
+       "verdict": "观望",
+       "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要 2/3，次要 2（需 1）",
-       "primaryHit": 2,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 2,
        "secondaryNeed": 1,
@@ -2256,7 +2256,7 @@
          "name": "处于区间底部三分之一",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "课程强调:区间做多不要在下半区就买,要等价格进入底部 1/3,因为市场往往会跌到区间底部。这是高抛低吸(BLSHS)的买点。"
         },
@@ -8313,11 +8313,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "关注",
-       "verdictLabel": "关注",
+       "verdict": "观望",
+       "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要 2/3，次要 2（需 1）",
-       "primaryHit": 2,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 2,
        "secondaryNeed": 1,
@@ -8337,7 +8337,7 @@
          "name": "处于区间底部三分之一",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "课程强调:区间做多不要在下半区就买,要等价格进入底部 1/3,因为市场往往会跌到区间底部。这是高抛低吸(BLSHS)的买点。"
         },
@@ -10537,7 +10537,7 @@
      }
     }
    },
-   "fetchedAt": "2026-09-21 05:41:18"
+   "fetchedAt": "2026-09-21 06:28:34"
   },
   {
    "code": "003006",
@@ -21074,19 +21074,19 @@
      }
     }
    },
-   "fetchedAt": "2026-09-21 05:41:32"
+   "fetchedAt": "2026-09-21 06:28:45"
   },
   {
    "code": "600192",
    "name": "长城电工",
-   "price": 7.75,
-   "changePct": 1.439791,
+   "price": 7.78,
+   "changePct": 1.832461,
    "timeframes": {
     "日线": {
      "source": "同花顺",
      "bars": 425,
      "last": "2026-09-20",
-     "close": 7.75
+     "close": 7.78
     },
     "60分": {
      "source": "智兔",
@@ -31565,19 +31565,19 @@
      }
     }
    },
-   "fetchedAt": "2026-09-21 05:41:44"
+   "fetchedAt": "2026-09-21 06:28:54"
   },
   {
    "code": "603376",
    "name": "大明电子",
-   "price": 27.77,
-   "changePct": 1.165756,
+   "price": 27.79,
+   "changePct": 1.238616,
    "timeframes": {
     "日线": {
      "source": "同花顺",
      "bars": 215,
      "last": "2026-09-20",
-     "close": 27.77
+     "close": 27.79
     },
     "60分": {
      "source": "智兔",
@@ -42058,19 +42058,19 @@
      }
     }
    },
-   "fetchedAt": "2026-09-21 05:41:56"
+   "fetchedAt": "2026-09-21 06:29:02"
   },
   {
    "code": "600869",
    "name": "远东股份",
-   "price": 22.57,
-   "changePct": 5.418029,
+   "price": 22.55,
+   "changePct": 5.324615,
    "timeframes": {
     "日线": {
      "source": "同花顺",
      "bars": 425,
      "last": "2026-09-20",
-     "close": 22.57
+     "close": 22.55
     },
     "60分": {
      "source": "智兔",
@@ -52585,15 +52585,15 @@
      }
     }
    },
-   "fetchedAt": "2026-09-21 05:42:10"
+   "fetchedAt": "2026-09-21 06:29:19"
   }
  ],
  "summaries": [
   {
    "code": "600594",
    "name": "益佰制药",
-   "price": 3.78,
-   "changePct": 6.179775,
+   "price": 3.82,
+   "changePct": 7.303371,
    "buySignals": [
     {
      "model": "两腿回调做多（TBTL）",
@@ -52628,7 +52628,7 @@
      "label": "可买入"
     }
    ],
-   "fetchedAt": "2026-09-21 05:41:18"
+   "fetchedAt": "2026-09-21 06:28:34"
   },
   {
    "code": "003006",
@@ -52717,13 +52717,13 @@
      "label": "可买入"
     }
    ],
-   "fetchedAt": "2026-09-21 05:41:32"
+   "fetchedAt": "2026-09-21 06:28:45"
   },
   {
    "code": "600192",
    "name": "长城电工",
-   "price": 7.75,
-   "changePct": 1.439791,
+   "price": 7.78,
+   "changePct": 1.832461,
    "buySignals": [
     {
      "model": "两腿回调做多（TBTL）",
@@ -52742,13 +52742,13 @@
      "label": "可买入"
     }
    ],
-   "fetchedAt": "2026-09-21 05:41:44"
+   "fetchedAt": "2026-09-21 06:28:54"
   },
   {
    "code": "603376",
    "name": "大明电子",
-   "price": 27.77,
-   "changePct": 1.165756,
+   "price": 27.79,
+   "changePct": 1.238616,
    "buySignals": [
     {
      "model": "上涨趋势回调做多",
@@ -52767,13 +52767,13 @@
      "label": "可买入"
     }
    ],
-   "fetchedAt": "2026-09-21 05:41:56"
+   "fetchedAt": "2026-09-21 06:29:02"
   },
   {
    "code": "600869",
    "name": "远东股份",
-   "price": 22.57,
-   "changePct": 5.418029,
+   "price": 22.55,
+   "changePct": 5.324615,
    "buySignals": [
     {
      "model": "两腿回调做多（TBTL）",
@@ -52904,7 +52904,7 @@
      "label": "可买入"
     }
    ],
-   "fetchedAt": "2026-09-21 05:42:10"
+   "fetchedAt": "2026-09-21 06:29:19"
   }
  ]
 }
