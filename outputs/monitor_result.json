@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-22 05:39:21",
+ "generatedAt": "2026-09-22 06:20:57",
  "tfs": [
   "日线",
   "60分",
@@ -11,14 +11,14 @@
   {
    "code": "600594",
    "name": "益佰制药",
-   "price": 3.79,
-   "changePct": -0.78534,
+   "price": 3.77,
+   "changePct": -1.308901,
    "timeframes": {
     "日线": {
      "source": "同花顺",
      "bars": 426,
      "last": "2026-09-21",
-     "close": 3.79
+     "close": 3.77
     },
     "60分": {
      "source": "智兔",
@@ -2219,11 +2219,11 @@
      "direction": "多",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "多",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要 2/3，次要 1（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -2252,7 +2252,7 @@
          "name": "处于区间底部三分之一",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "课程强调:区间做多不要在下半区就买,要等价格进入底部 1/3,因为市场往往会跌到区间底部。这是高抛低吸(BLSHS)的买点。"
         },
@@ -2546,7 +2546,7 @@
        "why": "首要仅 1/3",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 3,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -2591,7 +2591,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -2600,7 +2600,7 @@
          "name": "收盘接近最低",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -2898,8 +2898,8 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 2,
@@ -2919,7 +2919,7 @@
          "name": "跌破且收盘弱势",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "空头突破K线要收在低位,收盘接近最低。"
         },
@@ -3256,7 +3256,7 @@
        "why": "首要仅 1/3",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -3292,7 +3292,7 @@
          "name": "收盘接近最低",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -3572,10 +3572,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "空",
-       "why": "首要 1/2，次要 1（需 1）",
+       "why": "首要 1/2，次要 2（需 1）",
        "primaryHit": 1,
        "primaryNeed": 2,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -3611,7 +3611,7 @@
          "name": "收盘接近最低",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -3858,7 +3858,7 @@
        "why": "首要仅 1/3",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -3903,7 +3903,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -4531,10 +4531,10 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -4561,7 +4561,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -4588,7 +4588,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -5526,10 +5526,10 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -5556,7 +5556,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -5574,7 +5574,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -6161,13 +6161,13 @@
      "direction": "空",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "空",
-       "why": "首要仅 0/2",
-       "primaryHit": 0,
+       "why": "首要 1/2，次要 1（需 1）",
+       "primaryHit": 1,
        "primaryNeed": 2,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -6185,7 +6185,7 @@
          "name": "高潮后看跌反转K线",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "买入高潮之后出现收在低位的大阴线,确认反转向下。"
         },
@@ -6221,7 +6221,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -6871,11 +6871,11 @@
      "direction": "空",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "空",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要 2/3，次要 0（需 2）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 2,
@@ -6904,7 +6904,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -7265,10 +7265,10 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -7295,7 +7295,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -7322,7 +7322,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -7584,10 +7584,10 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -7614,7 +7614,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -7641,7 +7641,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -8294,8 +8294,8 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -8315,7 +8315,7 @@
          "name": "处于区间底部三分之一",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "课程强调:区间做多不要在下半区就买,要等价格进入底部 1/3,因为市场往往会跌到区间底部。这是高抛低吸(BLSHS)的买点。"
         },
@@ -8692,7 +8692,7 @@
        "why": "命中排除条件：下降趋势结构（LH+LL）",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 3,
        "secondaryNeed": 1,
        "exclusionHit": [
         "下降趋势结构（LH+LL）"
@@ -8730,7 +8730,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -8739,7 +8739,7 @@
          "name": "收盘接近最低",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -10158,7 +10158,7 @@
        "verdictLabel": "观望",
        "direction": "空",
        "why": "命中排除条件：开盘价位于昨日区间内",
-       "primaryHit": 0,
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -10180,7 +10180,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -10512,7 +10512,7 @@
      }
     }
    },
-   "fetchedAt": "2026-09-22 05:38:30"
+   "fetchedAt": "2026-09-22 06:20:02"
   },
   {
    "code": "003006",
@@ -21028,7 +21028,7 @@
      }
     }
    },
-   "fetchedAt": "2026-09-22 05:38:43"
+   "fetchedAt": "2026-09-22 06:20:17"
   },
   {
    "code": "600192",
@@ -21040,7 +21040,7 @@
      "source": "同花顺",
      "bars": 426,
      "last": "2026-09-21",
-     "close": 7.69
+     "close": 7.68
     },
     "60分": {
      "source": "智兔",
@@ -23572,7 +23572,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -23626,7 +23626,7 @@
          "name": "收盘接近最低",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -23924,8 +23924,8 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 2,
@@ -23945,7 +23945,7 @@
          "name": "跌破且收盘弱势",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "空头突破K线要收在低位,收盘接近最低。"
         },
@@ -24282,7 +24282,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -24318,7 +24318,7 @@
          "name": "收盘接近最低",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -24601,7 +24601,7 @@
        "why": "首要仅 0/2",
        "primaryHit": 0,
        "primaryNeed": 2,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -24637,7 +24637,7 @@
          "name": "收盘接近最低",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -25557,8 +25557,8 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -25587,7 +25587,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -26549,11 +26549,11 @@
      "direction": "空",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "空",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要 2/3，次要 1（需 1）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -26582,7 +26582,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -27187,11 +27187,11 @@
      "direction": "空",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "空",
-       "why": "首要仅 0/2",
-       "primaryHit": 0,
+       "why": "首要 1/2，次要 1（需 1）",
+       "primaryHit": 1,
        "primaryNeed": 2,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -27211,7 +27211,7 @@
          "name": "高潮后看跌反转K线",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "买入高潮之后出现收在低位的大阴线,确认反转向下。"
         },
@@ -27897,11 +27897,11 @@
      "direction": "空",
      "byTf": {
       "日线": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "空",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要 2/3，次要 1（需 2）",
+       "primaryHit": 2,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 2,
@@ -27930,7 +27930,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -28291,8 +28291,8 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -28321,7 +28321,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -28610,8 +28610,8 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -28640,7 +28640,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -29718,7 +29718,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 2,
+       "secondaryHit": 3,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -29763,7 +29763,7 @@
          "name": "收盘接近最低",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -31182,7 +31182,7 @@
        "verdictLabel": "观望",
        "direction": "空",
        "why": "命中排除条件：开盘价位于昨日区间内",
-       "primaryHit": 0,
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 1,
@@ -31204,7 +31204,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -31536,19 +31536,19 @@
      }
     }
    },
-   "fetchedAt": "2026-09-22 05:38:54"
+   "fetchedAt": "2026-09-22 06:20:29"
   },
   {
    "code": "603376",
    "name": "大明电子",
-   "price": 27.56,
-   "changePct": -0.613054,
+   "price": 27.52,
+   "changePct": -0.757303,
    "timeframes": {
     "日线": {
      "source": "同花顺",
      "bars": 216,
      "last": "2026-09-21",
-     "close": 27.56
+     "close": 27.5
     },
     "60分": {
      "source": "智兔",
@@ -42040,19 +42040,19 @@
      }
     }
    },
-   "fetchedAt": "2026-09-22 05:39:03"
+   "fetchedAt": "2026-09-22 06:20:41"
   },
   {
    "code": "600869",
    "name": "远东股份",
-   "price": 22.11,
-   "changePct": -3.618134,
+   "price": 21.99,
+   "changePct": -4.141238,
    "timeframes": {
     "日线": {
      "source": "同花顺",
      "bars": 426,
      "last": "2026-09-21",
-     "close": 22.11
+     "close": 21.99
     },
     "60分": {
      "source": "智兔",
@@ -52535,15 +52535,15 @@
      }
     }
    },
-   "fetchedAt": "2026-09-22 05:39:19"
+   "fetchedAt": "2026-09-22 06:20:55"
   }
  ],
  "summaries": [
   {
    "code": "600594",
    "name": "益佰制药",
-   "price": 3.79,
-   "changePct": -0.78534,
+   "price": 3.77,
+   "changePct": -1.308901,
    "buySignals": [
     {
      "model": "两腿回调做多（TBTL）",
@@ -52554,7 +52554,7 @@
      "label": "可买入"
     }
    ],
-   "fetchedAt": "2026-09-22 05:38:30"
+   "fetchedAt": "2026-09-22 06:20:02"
   },
   {
    "code": "003006",
@@ -52595,7 +52595,7 @@
      "label": "可买入"
     }
    ],
-   "fetchedAt": "2026-09-22 05:38:43"
+   "fetchedAt": "2026-09-22 06:20:17"
   },
   {
    "code": "600192",
@@ -52612,13 +52612,13 @@
      "label": "可买入"
     }
    ],
-   "fetchedAt": "2026-09-22 05:38:54"
+   "fetchedAt": "2026-09-22 06:20:29"
   },
   {
    "code": "603376",
    "name": "大明电子",
-   "price": 27.56,
-   "changePct": -0.613054,
+   "price": 27.52,
+   "changePct": -0.757303,
    "buySignals": [
     {
      "model": "两腿回调做多（TBTL）",
@@ -52629,15 +52629,15 @@
      "label": "可买入"
     }
    ],
-   "fetchedAt": "2026-09-22 05:39:03"
+   "fetchedAt": "2026-09-22 06:20:41"
   },
   {
    "code": "600869",
    "name": "远东股份",
-   "price": 22.11,
-   "changePct": -3.618134,
+   "price": 21.99,
+   "changePct": -4.141238,
    "buySignals": [],
-   "fetchedAt": "2026-09-22 05:39:19"
+   "fetchedAt": "2026-09-22 06:20:55"
   }
  ]
 }
