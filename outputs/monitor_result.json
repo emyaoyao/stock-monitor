@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-29 06:40:49",
+ "generatedAt": "2026-09-29 07:00:25",
  "tfs": [
   "日线",
   "60分",
@@ -18,7 +18,7 @@
      "source": "同花顺",
      "bars": 425,
      "last": "2026-09-28",
-     "close": 14.28
+     "close": 14.3
     },
     "60分": {
      "source": "智兔",
@@ -34,9 +34,9 @@
     },
     "15分": {
      "source": "智兔",
-     "bars": 1358,
-     "last": "2026-09-29 14:30:00",
-     "close": 14.35
+     "bars": 1359,
+     "last": "2026-09-29 14:45:00",
+     "close": 14.3
     }
    },
    "models": {
@@ -374,7 +374,7 @@
        "why": "命中排除条件：深回调（趋势存疑）、窄幅震荡区间（TTR）",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [
         "深回调（趋势存疑）",
@@ -449,7 +449,7 @@
          "name": "缩量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量低于均量的 K/10（默认 0.8 倍）,市场观望。缩量回调比放量回调更像健康的趋势休整。"
         },
@@ -473,7 +473,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -832,7 +832,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -1109,7 +1109,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -1172,7 +1172,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -1187,7 +1187,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -1493,7 +1493,7 @@
        "why": "命中排除条件：窄幅震荡区间（TTR）",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 2,
        "exclusionHit": [
         "窄幅震荡区间（TTR）"
@@ -1531,7 +1531,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -1582,7 +1582,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -1832,7 +1832,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -1877,7 +1877,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -1901,7 +1901,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -2224,7 +2224,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -2474,9 +2474,9 @@
        "verdictLabel": "观望",
        "direction": "多",
        "why": "命中排除条件：低波动率（避免乱跳）",
-       "primaryHit": 0,
+       "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [
         "低波动率（避免乱跳）"
@@ -2505,7 +2505,7 @@
          "name": "处于区间底部三分之一",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "课程强调:区间做多不要在下半区就买,要等价格进入底部 1/3,因为市场往往会跌到区间底部。这是高抛低吸(BLSHS)的买点。"
         },
@@ -2532,7 +2532,7 @@
          "name": "盈亏比 ≥ 2 倍",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "课程的最低要求:潜在盈利至少是风险的 2 倍,否则数学期望为负。目标位用等距测量移动或前高估算。"
         },
@@ -2547,7 +2547,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -2902,7 +2902,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -3179,7 +3179,7 @@
        "why": "首要仅 1/3",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 2,
        "exclusionHit": [],
        "rows": [
@@ -3215,7 +3215,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -3257,7 +3257,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -3507,7 +3507,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 2,
+       "secondaryHit": 3,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -3552,7 +3552,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -3576,7 +3576,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -3859,7 +3859,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -4178,7 +4178,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -4457,7 +4457,7 @@
        "why": "命中排除条件：窄幅震荡区间（TTR）",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [
         "窄幅震荡区间（TTR）"
@@ -4504,7 +4504,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -4537,7 +4537,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -4811,10 +4811,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "空",
-       "why": "首要 2/3，次要 0（需 1）",
+       "why": "首要 2/3，次要 2（需 1）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -4859,7 +4859,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -4877,7 +4877,7 @@
          "name": "连续阴线",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续 N 根阴线收在低位,空头动量的确认。"
         },
@@ -4892,7 +4892,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -5144,7 +5144,7 @@
        "why": "命中排除条件：窄幅震荡区间（TTR）",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [
         "窄幅震荡区间（TTR）"
@@ -5182,7 +5182,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -5215,7 +5215,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -5469,7 +5469,7 @@
        "why": "首要仅 1/3",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -5505,7 +5505,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -5538,7 +5538,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -5785,10 +5785,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "空",
-       "why": "首要 2/3，次要 0（需 1）",
+       "why": "首要 2/3，次要 1（需 1）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -5824,7 +5824,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -5857,7 +5857,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -6111,7 +6111,7 @@
        "why": "首要仅 0/2",
        "primaryHit": 0,
        "primaryNeed": 2,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -6156,7 +6156,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -6180,7 +6180,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -6427,10 +6427,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "空",
-       "why": "首要 1/2，次要 1（需 1）",
+       "why": "首要 1/2，次要 2（需 1）",
        "primaryHit": 1,
        "primaryNeed": 2,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -6475,7 +6475,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -6499,7 +6499,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -6807,7 +6807,7 @@
        "why": "首要仅 1/3",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 2,
+       "secondaryHit": 3,
        "secondaryNeed": 2,
        "exclusionHit": [],
        "rows": [
@@ -6879,7 +6879,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -6894,7 +6894,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -7198,7 +7198,7 @@
        "why": "首要仅 1/3",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 2,
        "exclusionHit": [],
        "rows": [
@@ -7270,7 +7270,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -7285,7 +7285,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -7532,10 +7532,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "空",
-       "why": "首要 2/3，次要 0（需 1）",
+       "why": "首要 2/3，次要 1（需 1）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -7580,7 +7580,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -7604,7 +7604,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -7878,10 +7878,10 @@
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "空",
-       "why": "首要 2/3，次要 1（需 1）",
+       "why": "首要 2/3，次要 2（需 1）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 2,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -7917,7 +7917,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -7959,7 +7959,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -8240,7 +8240,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -8276,7 +8276,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -8318,7 +8318,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -8622,9 +8622,9 @@
        "verdictLabel": "观望",
        "direction": "多",
        "why": "命中排除条件：窄幅震荡区间（TTR）",
-       "primaryHit": 1,
+       "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [
         "窄幅震荡区间（TTR）"
@@ -8644,7 +8644,7 @@
          "name": "处于区间底部三分之一",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "课程强调:区间做多不要在下半区就买,要等价格进入底部 1/3,因为市场往往会跌到区间底部。这是高抛低吸(BLSHS)的买点。"
         },
@@ -8680,7 +8680,7 @@
          "name": "缩量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量低于均量的 K/10（默认 0.8 倍）,市场观望。缩量回调比放量回调更像健康的趋势休整。"
         },
@@ -8713,7 +8713,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -9024,7 +9024,7 @@
        "why": "命中排除条件：窄幅震荡区间（TTR）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 2,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [
         "窄幅震荡区间（TTR）"
@@ -9080,7 +9080,7 @@
          "name": "缩量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量低于均量的 K/10（默认 0.8 倍）,市场观望。缩量回调比放量回调更像健康的趋势休整。"
         },
@@ -9113,7 +9113,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -9390,7 +9390,7 @@
        "why": "首要仅 1/3",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 2,
        "exclusionHit": [],
        "rows": [
@@ -9426,7 +9426,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -9468,7 +9468,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -9745,7 +9745,7 @@
        "why": "首要仅 0/3",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -9790,7 +9790,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -9823,7 +9823,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -10104,7 +10104,7 @@
        "why": "命中排除条件：开盘价位于昨日区间内",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [
         "开盘价位于昨日区间内"
@@ -10142,7 +10142,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -10184,7 +10184,7 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     },
@@ -10465,7 +10465,7 @@
        "why": "命中排除条件：开盘价位于昨日区间内",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 0,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [
         "开盘价位于昨日区间内"
@@ -10503,7 +10503,7 @@
          "name": "放量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "成交量超过近 N 日均量的 K/10 倍（默认 1.5 倍）。突破需要成交量配合,缩量突破更容易失败。"
         },
@@ -10545,12 +10545,12 @@
         }
        ],
        "errors": [],
-       "bars": 1358
+       "bars": 1359
       }
      }
     }
    },
-   "fetchedAt": "2026-09-29 06:40:47"
+   "fetchedAt": "2026-09-29 07:00:24"
   }
  ],
  "summaries": [
@@ -10585,7 +10585,7 @@
      "label": "可卖出（做空信号）"
     }
    ],
-   "fetchedAt": "2026-09-29 06:40:47"
+   "fetchedAt": "2026-09-29 07:00:24"
   }
  ]
 }
