@@ -4,23 +4,9 @@
 
 ---
 
-## ⚠️ 激活前的最后一步
+## 上线状态
 
-代码和 Secrets 都已就位，但**工作流文件目前放在 `deploy/monitor.yml`**，还没进 `.github/workflows/`，所以定时任务尚未生效。
-
-原因：写入 `.github/workflows/` 需要 token 带 `workflow` 权限，这是 GitHub 的安全门禁，API 侧无法绕过（会返回 404）。
-
-**任选一条激活**：
-
-**A. 网页里把文件挪过去（一步，不用改权限）**
-
-1. 打开 <https://github.com/emyaoyao/stock-monitor/edit/main/deploy/monitor.yml>
-2. 把顶部文件名框改成：`../.github/workflows/monitor.yml`
-3. 点 **Commit changes**
-
-**B. 给 token 加 `workflow` 权限（以后改工作流更方便）**
-
-GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic) → 选中那个 token → 勾上 **workflow** → Update token。token 值不变，本地凭据继续可用。
+定时推送以 GitHub 仓库 `main` 分支的 `.github/workflows/monitor.yml` 和 `outputs/watchlist.json` 为准；本地改文件不会自动部署。发布后到 Actions 核对最新运行时间、结果及仓库清单。工作台的本机清单也不会自动变成云端清单，需按下文配置同步。GitHub Actions 的定时触发可能明显延迟，不适合保证严格每 30 分钟送达；若需准点，应换用可靠的外部定时器触发工作流。
 
 激活后可自查：Actions 页出现「买点监控」工作流即成功。
 
@@ -59,10 +45,11 @@ GitHub → Settings → Developer settings → Personal access tokens → Tokens
 北京时间（工作流里用 UTC cron 换算）：
 
 - **09:20** 盘前集合竞价扫一次
-- **09:30 – 15:00** 每 30 分钟扫一次
+- **09:30 – 11:00、13:00 – 14:30** 每 30 分钟扫一次；午休及 15:00 后不推送
+- GitHub 排队导致任务延迟到停市后时，运行时会再次拦截；正常交易时段每次推送当前清单及买点摘要，无买点也会告知。
 - 周末不跑（cron 限定周一至周五）
 
-只推**新信号**：同一个 `(股票|模型|周期)` 组合出过就不再重复推，避免刷屏。状态存 `outputs/last_signals.json`，由工作流提交回仓库。
+定时任务每次发送扫描摘要；手动触发仍按信号去重。状态存 `outputs/last_signals.json`，由工作流提交回仓库。
 
 ---
 
@@ -78,6 +65,15 @@ GitHub → Settings → Developer settings → Personal access tokens → Tokens
 | `WXPUSHER_UID` | 推送目标用户 |
 
 行情源自动降级：智兔优先（有分钟线）→ 同花顺兜底。
+
+## 电脑工作台同步云端清单
+
+电脑工作台默认仅使用本机 `outputs/watchlist.json`，不应把本机增删误认为微信监控已同步。选择一种方式配置后重启工作台：
+
+- 已在手机 PWA「多设备共享」中使用 GitHub 令牌：把同一枚具备仓库 Contents 读写及 Actions 写权限的令牌设为 Windows 用户环境变量 `MONITOR_GITHUB_TOKEN`。
+- 已部署共享代理：设置 `MONITOR_PROXY_URL`（完整 HTTPS 接口地址：Cloudflare Worker 带 `/api`，阿里云 FC 使用函数 HTTP 地址）和 `MONITOR_APP_KEY`（代理的 APP_KEY）。
+
+配置后，读取、添加、删除都会先访问云端；云端失败会报错，不会假装同步成功。勿把令牌或口令写入网页、代码或聊天记录。
 
 ---
 
