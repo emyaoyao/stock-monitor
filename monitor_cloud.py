@@ -238,7 +238,7 @@ def push(title: str, html: str, summary: str, dry_run: bool) -> bool:
 # ------------------------------------------------------------------ 模式
 
 def do_run(cmd: dict, dry_run: bool) -> None:
-    scheduled = os.environ.get("GITHUB_EVENT_NAME") == "schedule"
+    scheduled = os.environ.get("GITHUB_EVENT_NAME") == "schedule" or cmd.get("mode") == "schedule"
     if scheduled and not market_open():
         print("[run] 非交易时段，定时任务不扫描、不推送")
         return
