@@ -18,11 +18,15 @@
 from __future__ import annotations
 
 import argparse
+import base64
+import html as html_lib
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, time
 from pathlib import Path
+from zoneinfo import ZoneInfo
+from urllib.request import Request, urlopen
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPT_DIR))
@@ -36,6 +40,37 @@ OUT = SCRIPT_DIR / "outputs"
 WATCHLIST = OUT / "watchlist.json"
 LAST = OUT / "last_signals.json"
 RESULT = OUT / "monitor_result.json"
+MARKET_TIMEZONE = ZoneInfo("Asia/Shanghai")
+
+
+def market_open() -> bool:
+    now = datetime.now(MARKET_TIMEZONE)
+    if now.weekday() >= 5:
+        return False
+    return time(9, 20) <= now.time() < time(11, 30) or time(13, 0) <= now.time() < time(15, 0)
+
+
+def cloud_watchlist_unchanged(codes: list[str]) -> bool:
+    token = os.environ.get("GITHUB_TOKEN")
+    repository = os.environ.get("GITHUB_REPOSITORY")
+    if not repository:
+        print("[run] 缺少云端仓库信息，停止定时推送")
+        return False
+    headers = {"Accept": "application/vnd.github+json", "User-Agent": "price-action-monitor"}
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    request = Request(
+        f"https://api.github.com/repos/{repository}/contents/outputs/watchlist.json?ref=main",
+        headers=headers,
+    )
+    try:
+        with urlopen(request, timeout=12) as response:
+            payload = json.load(response)
+        remote = json.loads(base64.b64decode(payload["content"]).decode("utf-8"))
+        return {item["code"] for item in remote} == set(codes)
+    except Exception as exc:
+        print(f"[run] 云端清单核对失败，停止定时推送：{type(exc).__name__}: {exc}")
+        return False
 
 
 # ------------------------------------------------------------------ 持久化
@@ -187,20 +222,26 @@ def build_items(summaries: list[dict], names: dict[str, str],
     return items
 
 
-def push(title: str, html: str, summary: str, dry_run: bool) -> None:
+def push(title: str, html: str, summary: str, dry_run: bool) -> bool:
     if dry_run:
         print(f"[dry-run] 将要推送《{title}》：{summary}\n{html}")
-        return
+        return True
     try:
         r = PUSH.send(title, html, summary)
         print(f"[push] {r.get('msg')}（{summary}）")
+        return True
     except Exception as e:
         print(f"[push] 失败：{type(e).__name__} {e}")
+        return False
 
 
 # ------------------------------------------------------------------ 模式
 
 def do_run(cmd: dict, dry_run: bool) -> None:
+    scheduled = os.environ.get("GITHUB_EVENT_NAME") == "schedule"
+    if scheduled and not market_open():
+        print("[run] 非交易时段，定时任务不扫描、不推送")
+        return
     wl = load_watchlist()
     names = {w["code"]: w.get("name", "") for w in wl}
 
@@ -256,12 +297,33 @@ def do_run(cmd: dict, dry_run: bool) -> None:
     prev = set(load_last_signals().get("keys", []))
     cur = {signal_key(s["code"], g) for s in summaries for g in s.get("buySignals", [])}
     new_keys = cur - prev
+    if scheduled:
+        if len(summaries) != len(codes):
+            raise RuntimeError("部分股票扫描失败，未发送监控摘要")
+        if not market_open():
+            print("[run] 扫描完成时已停市，跳过推送")
+            return
+        if not dry_run and not cloud_watchlist_unchanged(codes):
+            print("[run] 云端清单已变更或无法核验，跳过旧清单推送")
+            return
+        items = build_items(summaries, names)
+        stock_list = "、".join(
+            f"{html_lib.escape(names.get(code) or code)}（{html_lib.escape(code)}）" for code in codes
+        )
+        report = f"<p>本次监控 {len(codes)} 只：{stock_list}</p>" + PUSH.render_report(items)
+        count = sum(len(item["buySignals"]) for item in items)
+        summary = f"监控 {len(codes)} 只，买点 {count} 条" if count else f"监控 {len(codes)} 只，暂无买点"
+        if not push("价格行为 · 定时监控", report, summary, dry_run):
+            raise RuntimeError("定时微信推送失败")
+        save_last_signals(cur)
+        return
     if new_keys:
         items = build_items(summaries, names, only_keys=new_keys)
         html = PUSH.render_report(items)
         cnt = sum(len(i["buySignals"]) for i in items)
-        push("价格行为 · 买点监控（新信号）", html,
-             f"{len(items)} 只标的 {cnt} 条新买点", dry_run)
+        if not push("价格行为 · 买点监控（新信号）", html,
+                    f"{len(items)} 只标的 {cnt} 条新买点", dry_run):
+            return
     else:
         print("[run] 无新买点信号，静默（按你的偏好只推新信号）")
     save_last_signals(cur)
