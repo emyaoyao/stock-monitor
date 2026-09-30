@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-30 06:11:19",
+ "generatedAt": "2026-09-30 06:49:22",
  "tfs": [
   "日线",
   "60分",
@@ -11,14 +11,14 @@
   {
    "code": "600475",
    "name": "华光环能",
-   "price": 14,
-   "changePct": -2.097902,
+   "price": 13.99,
+   "changePct": -2.167832,
    "timeframes": {
     "日线": {
      "source": "同花顺",
      "bars": 426,
      "last": "2026-09-29",
-     "close": 14.0
+     "close": 14.01
     },
     "60分": {
      "source": "智兔",
@@ -28,15 +28,15 @@
     },
     "30分": {
      "source": "智兔",
-     "bars": 678,
-     "last": "2026-09-30 14:00:00",
-     "close": 13.99
+     "bars": 679,
+     "last": "2026-09-30 14:30:00",
+     "close": 13.95
     },
     "15分": {
      "source": "智兔",
-     "bars": 1356,
-     "last": "2026-09-30 14:00:00",
-     "close": 13.99
+     "bars": 1359,
+     "last": "2026-09-30 14:45:00",
+     "close": 14.01
     }
    },
    "models": {
@@ -365,7 +365,7 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -374,7 +374,7 @@
        "why": "命中排除条件：深回调（趋势存疑）、窄幅震荡区间（TTR）",
        "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [
         "深回调（趋势存疑）",
@@ -449,7 +449,7 @@
          "name": "缩量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量低于均量的 K/10（默认 0.8 倍）,市场观望。缩量回调比放量回调更像健康的趋势休整。"
         },
@@ -473,7 +473,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -664,12 +664,14 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/3",
+       "why": "命中排除条件：单边下跌（连续趋势K线）",
        "primaryHit": 0,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "单边下跌（连续趋势K线）"
+       ],
        "rows": [
         {
          "id": "trend_up_structure",
@@ -739,20 +741,20 @@
          "name": "单边下跌（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续多根K线收盘不断走低,空头掌控。此时抢反弹是逆势交易。"
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -772,7 +774,7 @@
          "name": "两腿回调（TBTL）",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "TBTL = Ten Bars Two Legs:持续 10 根K线以上、走出两段的下跌回调。第二段走完后反转的概率明显提高,是课程里的经典回调买入结构。"
         },
@@ -832,7 +834,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -1100,7 +1102,7 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -1187,7 +1189,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -1484,7 +1486,7 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -1582,7 +1584,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -1823,7 +1825,7 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -1901,7 +1903,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -2074,12 +2076,14 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/2",
+       "why": "命中排除条件：单边下跌（连续趋势K线）",
        "primaryHit": 0,
        "primaryNeed": 2,
        "secondaryHit": 0,
        "secondaryNeed": 1,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "单边下跌（连续趋势K线）"
+       ],
        "rows": [
         {
          "id": "tight_channel_up",
@@ -2140,13 +2144,13 @@
          "name": "单边下跌（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续多根K线收盘不断走低,空头掌控。此时抢反弹是逆势交易。"
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -2224,7 +2228,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -2467,7 +2471,7 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -2547,7 +2551,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -2815,16 +2819,16 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "可买入",
        "verdictLabel": "可卖出（做空信号）",
        "direction": "空",
-       "why": "首要 3/3 全中，次要 3（需 1）",
+       "why": "首要 3/3 全中，次要 1（需 1）",
        "primaryHit": 3,
        "primaryNeed": 3,
-       "secondaryHit": 3,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -2869,7 +2873,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -2878,7 +2882,7 @@
          "name": "收盘接近最低",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -2902,7 +2906,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -3089,8 +3093,8 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 0/3",
-       "primaryHit": 0,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 2,
@@ -3110,7 +3114,7 @@
          "name": "跌破且收盘弱势",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "空头突破K线要收在低位,收盘接近最低。"
         },
@@ -3170,7 +3174,7 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -3257,7 +3261,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -3498,7 +3502,7 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -3507,7 +3511,7 @@
        "why": "首要仅 1/3",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 2,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -3543,7 +3547,7 @@
          "name": "收盘接近最低",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -3576,7 +3580,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -3790,16 +3794,16 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "空",
-       "why": "首要 1/2，次要 2（需 1）",
+       "why": "首要 1/2，次要 1（需 1）",
        "primaryHit": 1,
        "primaryNeed": 2,
-       "secondaryHit": 2,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -3835,7 +3839,7 @@
          "name": "收盘接近最低",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -3859,7 +3863,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -4100,16 +4104,16 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "关注",
        "verdictLabel": "关注",
        "direction": "空",
-       "why": "首要 2/3，次要 2（需 1）",
+       "why": "首要 2/3，次要 1（需 1）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 2,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -4154,7 +4158,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -4178,7 +4182,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -4448,7 +4452,7 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -4537,7 +4541,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -4805,16 +4809,16 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
-       "verdict": "关注",
-       "verdictLabel": "关注",
+       "verdict": "观望",
+       "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要 2/3，次要 1（需 1）",
-       "primaryHit": 2,
+       "why": "首要仅 1/3",
+       "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -4841,7 +4845,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -4868,7 +4872,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -4892,7 +4896,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -5135,7 +5139,7 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -5215,7 +5219,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -5388,12 +5392,14 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 1/3",
+       "why": "命中排除条件：单边下跌（连续趋势K线）",
        "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 1,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "单边下跌（连续趋势K线）"
+       ],
        "rows": [
         {
          "id": "wedge_bottom",
@@ -5454,13 +5460,13 @@
          "name": "单边下跌（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续多根K线收盘不断走低,空头掌控。此时抢反弹是逆势交易。"
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -5538,7 +5544,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -5779,16 +5785,16 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要仅 0/3",
+       "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -5815,7 +5821,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -5833,7 +5839,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -5857,7 +5863,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -6030,12 +6036,14 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/2",
+       "why": "命中排除条件：单边下跌（连续趋势K线）",
        "primaryHit": 0,
        "primaryNeed": 2,
        "secondaryHit": 0,
        "secondaryNeed": 1,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "单边下跌（连续趋势K线）"
+       ],
        "rows": [
         {
          "id": "selling_climax",
@@ -6096,13 +6104,13 @@
          "name": "单边下跌（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续多根K线收盘不断走低,空头掌控。此时抢反弹是逆势交易。"
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -6180,7 +6188,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -6346,11 +6354,11 @@
        "bars": 339
       },
       "30分": {
-       "verdict": "观望",
-       "verdictLabel": "观望",
+       "verdict": "关注",
+       "verdictLabel": "关注",
        "direction": "空",
-       "why": "首要仅 0/2",
-       "primaryHit": 0,
+       "why": "首要 1/2，次要 1（需 1）",
+       "primaryHit": 1,
        "primaryNeed": 2,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -6370,7 +6378,7 @@
          "name": "高潮后看跌反转K线",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "买入高潮之后出现收在低位的大阴线,确认反转向下。"
         },
@@ -6421,7 +6429,7 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -6430,7 +6438,7 @@
        "why": "首要仅 0/2",
        "primaryHit": 0,
        "primaryNeed": 2,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -6484,7 +6492,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -6499,7 +6507,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -6708,12 +6716,14 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 1/3",
+       "why": "命中排除条件：单边下跌（连续趋势K线）",
        "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 2,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "单边下跌（连续趋势K线）"
+       ],
        "rows": [
         {
          "id": "trend_down_structure",
@@ -6792,13 +6802,13 @@
          "name": "单边下跌（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续多根K线收盘不断走低,空头掌控。此时抢反弹是逆势交易。"
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -6894,7 +6904,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -7189,14 +7199,14 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要仅 0/3",
+       "primaryHit": 0,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 2,
@@ -7225,7 +7235,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -7285,7 +7295,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -7526,16 +7536,16 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要仅 0/3",
+       "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -7562,7 +7572,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -7589,7 +7599,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -7604,7 +7614,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -7872,16 +7882,16 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
-       "why": "首要仅 1/3",
-       "primaryHit": 1,
+       "why": "首要仅 0/3",
+       "primaryHit": 0,
        "primaryNeed": 3,
-       "secondaryHit": 2,
+       "secondaryHit": 1,
        "secondaryNeed": 1,
        "exclusionHit": [],
        "rows": [
@@ -7908,7 +7918,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -7935,7 +7945,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -7959,7 +7969,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -8150,12 +8160,14 @@
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
-       "why": "首要仅 0/3",
+       "why": "命中排除条件：单边下跌（连续趋势K线）",
        "primaryHit": 0,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 1,
-       "exclusionHit": [],
+       "exclusionHit": [
+        "单边下跌（连续趋势K线）"
+       ],
        "rows": [
         {
          "id": "failed_breakout_down",
@@ -8225,13 +8237,13 @@
          "name": "单边下跌（连续趋势K线）",
          "role": "exclusion",
          "roleLabel": "排除",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "连续多根K线收盘不断走低,空头掌控。此时抢反弹是逆势交易。"
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -8318,7 +8330,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -8615,7 +8627,7 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -8624,7 +8636,7 @@
        "why": "命中排除条件：窄幅震荡区间（TTR）",
        "primaryHit": 2,
        "primaryNeed": 3,
-       "secondaryHit": 1,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [
         "窄幅震荡区间（TTR）"
@@ -8680,7 +8692,7 @@
          "name": "缩量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量低于均量的 K/10（默认 0.8 倍）,市场观望。缩量回调比放量回调更像健康的趋势休整。"
         },
@@ -8713,7 +8725,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -9015,7 +9027,7 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -9024,7 +9036,7 @@
        "why": "命中排除条件：窄幅震荡区间（TTR）、下降趋势结构（LH+LL）",
        "primaryHit": 1,
        "primaryNeed": 3,
-       "secondaryHit": 3,
+       "secondaryHit": 0,
        "secondaryNeed": 1,
        "exclusionHit": [
         "窄幅震荡区间（TTR）",
@@ -9063,7 +9075,7 @@
          "name": "看跌反转K线（长上影）",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "上影线长、收盘接近最低——上方有卖盘压回。"
         },
@@ -9072,7 +9084,7 @@
          "name": "收盘接近最低",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -9081,7 +9093,7 @@
          "name": "缩量",
          "role": "secondary",
          "roleLabel": "次要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "成交量低于均量的 K/10（默认 0.8 倍）,市场观望。缩量回调比放量回调更像健康的趋势休整。"
         },
@@ -9114,7 +9126,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -9382,7 +9394,7 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -9469,7 +9481,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -9737,7 +9749,7 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
@@ -9824,7 +9836,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -10098,14 +10110,14 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "多",
        "why": "命中排除条件：开盘价位于昨日区间内",
-       "primaryHit": 0,
+       "primaryHit": 1,
        "primaryNeed": 3,
        "secondaryHit": 0,
        "secondaryNeed": 1,
@@ -10127,7 +10139,7 @@
          "name": "开盘首根K线强势",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": false,
+         "hit": true,
          "error": "",
          "desc": "开盘第一根K线实体饱满、收在高位。早盘的方向常常决定当天的交易基调。"
         },
@@ -10187,7 +10199,7 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     },
@@ -10461,14 +10473,14 @@
         }
        ],
        "errors": [],
-       "bars": 678
+       "bars": 679
       },
       "15分": {
        "verdict": "观望",
        "verdictLabel": "观望",
        "direction": "空",
        "why": "命中排除条件：开盘价位于昨日区间内",
-       "primaryHit": 1,
+       "primaryHit": 0,
        "primaryNeed": 3,
        "secondaryHit": 1,
        "secondaryNeed": 1,
@@ -10490,7 +10502,7 @@
          "name": "收盘接近最低",
          "role": "primary",
          "roleLabel": "首要",
-         "hit": true,
+         "hit": false,
          "error": "",
          "desc": "收盘价位于K线区间的下 R%,卖盘掌控。"
         },
@@ -10550,26 +10562,26 @@
         }
        ],
        "errors": [],
-       "bars": 1356
+       "bars": 1359
       }
      }
     }
    },
-   "fetchedAt": "2026-09-30 06:11:18"
+   "fetchedAt": "2026-09-30 06:49:21"
   }
  ],
  "summaries": [
   {
    "code": "600475",
    "name": "华光环能",
-   "price": 14,
-   "changePct": -2.097902,
+   "price": 13.99,
+   "changePct": -2.167832,
    "buySignals": [
     {
      "model": "下降趋势反弹做空",
      "modelId": "m_rally_short",
      "tf": "15分",
-     "why": "首要 3/3 全中，次要 3（需 1）",
+     "why": "首要 3/3 全中，次要 1（需 1）",
      "direction": "空",
      "label": "可卖出（做空信号）"
     },
@@ -10598,7 +10610,7 @@
      "label": "可卖出（做空信号）"
     }
    ],
-   "fetchedAt": "2026-09-30 06:11:18"
+   "fetchedAt": "2026-09-30 06:49:21"
   }
  ]
 }
