@@ -4,6 +4,7 @@ import html
 import json
 import os
 import re
+import subprocess
 import time
 from datetime import date
 from pathlib import Path
@@ -89,6 +90,12 @@ def calendar_for(year: int) -> list[tuple[date, date]] | None:
             "ranges": [[start.isoformat(), end.isoformat()] for start, end in ranges],
         }, ensure_ascii=False, indent=2), encoding="utf-8")
         temporary.replace(CACHE)
+        if os.environ.get("GITHUB_ACTIONS") == "true":
+            try:
+                subprocess.run(["git", "add", "--", "outputs/market_calendar.json"],
+                               cwd=ROOT, check=True, capture_output=True, text=True)
+            except (OSError, subprocess.CalledProcessError) as exc:
+                print(f"[calendar] 年度缓存暂未加入云端提交：{type(exc).__name__}")
         print(f"[calendar] 已获取 {year} 年交易所休市安排")
         return ranges
     except Exception as exc:
