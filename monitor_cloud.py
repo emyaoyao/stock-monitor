@@ -23,7 +23,7 @@ import html as html_lib
 import json
 import os
 import sys
-from datetime import datetime, time
+from datetime import date, datetime, time
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from urllib.request import Request, urlopen
@@ -41,11 +41,27 @@ WATCHLIST = OUT / "watchlist.json"
 LAST = OUT / "last_signals.json"
 RESULT = OUT / "monitor_result.json"
 MARKET_TIMEZONE = ZoneInfo("Asia/Shanghai")
+MARKET_HOLIDAYS = {
+    2026: (
+        (date(2026, 1, 1), date(2026, 1, 3)),
+        (date(2026, 2, 15), date(2026, 2, 23)),
+        (date(2026, 4, 4), date(2026, 4, 6)),
+        (date(2026, 5, 1), date(2026, 5, 5)),
+        (date(2026, 6, 19), date(2026, 6, 21)),
+        (date(2026, 9, 25), date(2026, 9, 27)),
+        (date(2026, 10, 1), date(2026, 10, 7)),
+    ),
+}
+
+
+def trading_day(day: date) -> bool:
+    return (day.weekday() < 5 and day.year in MARKET_HOLIDAYS
+            and not any(start <= day <= end for start, end in MARKET_HOLIDAYS[day.year]))
 
 
 def market_open() -> bool:
     now = datetime.now(MARKET_TIMEZONE)
-    if now.weekday() >= 5:
+    if not trading_day(now.date()):
         return False
     return time(9, 20) <= now.time() < time(11, 30) or time(13, 0) <= now.time() < time(15, 0)
 
@@ -275,7 +291,14 @@ def do_run(cmd: dict, dry_run: bool) -> None:
         print("[run] 监控清单为空，跳过扫描（按偏好不推送）")
         return
 
+    if not market_open():
+        print("[run] 休市期间仅更新监控清单，不扫描、不推送")
+        return
+
     summaries = scan(codes, names, quiet=True)
+    if not market_open():
+        print("[run] 扫描期间已休市，跳过监控推送")
+        return
 
     if cmd["add"] or cmd["remove"]:
         # 手动增删：仅当出现买入/卖出建议才推送（观望不打扰，你可在 PC/手机端查看）
@@ -330,6 +353,9 @@ def do_run(cmd: dict, dry_run: bool) -> None:
 
 
 def do_view(cmd: dict, dry_run: bool) -> None:
+    if not market_open():
+        print("[view] 休市期间不扫描、不推送监控报告")
+        return
     wl = load_watchlist()
     names = {w["code"]: w.get("name", "") for w in wl}
     codes = [w["code"] for w in wl]
@@ -337,6 +363,9 @@ def do_view(cmd: dict, dry_run: bool) -> None:
         print("[view] 监控清单为空，按偏好不推送")
         return
     summaries = scan(codes, names, quiet=True)
+    if not market_open():
+        print("[view] 扫描期间已休市，跳过监控推送")
+        return
     items = build_items(summaries, names)  # 当前所有买点（查看时不过滤）
     if items:
         wl_txt = "<br>".join(f"· {w['code']} {w.get('name','')}" for w in wl)
