@@ -23,17 +23,19 @@ import html as html_lib
 import json
 import os
 import sys
-from datetime import date, datetime, time
+from datetime import datetime, time
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from urllib.request import Request, urlopen
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPT_DIR))
+sys.path.insert(0, str(SCRIPT_DIR.parent / "work"))
 
 import monitor_engine as ME   # noqa: E402
 import push_wxpusher as PUSH  # noqa: E402
 import quote_client as Q       # noqa: E402  实时补名称用
+from price_action_workbench.market_calendar import is_trading_day
 
 MODELS = SCRIPT_DIR / "models_v5.json"
 OUT = SCRIPT_DIR / "outputs"
@@ -41,27 +43,11 @@ WATCHLIST = OUT / "watchlist.json"
 LAST = OUT / "last_signals.json"
 RESULT = OUT / "monitor_result.json"
 MARKET_TIMEZONE = ZoneInfo("Asia/Shanghai")
-MARKET_HOLIDAYS = {
-    2026: (
-        (date(2026, 1, 1), date(2026, 1, 3)),
-        (date(2026, 2, 15), date(2026, 2, 23)),
-        (date(2026, 4, 4), date(2026, 4, 6)),
-        (date(2026, 5, 1), date(2026, 5, 5)),
-        (date(2026, 6, 19), date(2026, 6, 21)),
-        (date(2026, 9, 25), date(2026, 9, 27)),
-        (date(2026, 10, 1), date(2026, 10, 7)),
-    ),
-}
-
-
-def trading_day(day: date) -> bool:
-    return (day.weekday() < 5 and day.year in MARKET_HOLIDAYS
-            and not any(start <= day <= end for start, end in MARKET_HOLIDAYS[day.year]))
 
 
 def market_open() -> bool:
     now = datetime.now(MARKET_TIMEZONE)
-    if not trading_day(now.date()):
+    if not is_trading_day(now.date()):
         return False
     return time(9, 20) <= now.time() < time(11, 30) or time(13, 0) <= now.time() < time(15, 0)
 
