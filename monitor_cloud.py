@@ -42,7 +42,15 @@ OUT = SCRIPT_DIR / "outputs"
 WATCHLIST = OUT / "watchlist.json"
 LAST = OUT / "last_signals.json"
 RESULT = OUT / "monitor_result.json"
+MONITOR_MODE = OUT / "monitor_mode.json"
 MARKET_TIMEZONE = ZoneInfo("Asia/Shanghai")
+
+
+def local_scheduler_primary() -> bool:
+    try:
+        return json.loads(MONITOR_MODE.read_text(encoding="utf-8")).get("localPrimary") is True
+    except (OSError, ValueError, TypeError):
+        return False
 
 
 def market_open() -> bool:
@@ -241,6 +249,9 @@ def push(title: str, html: str, summary: str, dry_run: bool) -> bool:
 
 def do_run(cmd: dict, dry_run: bool) -> None:
     scheduled = os.environ.get("GITHUB_EVENT_NAME") == "schedule" or cmd.get("mode") == "schedule"
+    if scheduled and local_scheduler_primary():
+        print("[run] 本机定时扫描为主，云端计划任务不推送")
+        return
     if scheduled and not market_open():
         print("[run] 非交易时段，定时任务不扫描、不推送")
         return
